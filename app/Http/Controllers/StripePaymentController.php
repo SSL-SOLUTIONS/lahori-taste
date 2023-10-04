@@ -1,13 +1,15 @@
 <?php
-    
+
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Stripe;
-     
+
 class StripePaymentController extends Controller
 {
     /**
@@ -15,31 +17,74 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripe($totalPrice)
+    public function stripe(Request $request)
     {
-        return view('stripe',compact('totalPrice'));
+        // dd($request->all());
+        session(['email' => $request->email]);
+        session(['phone' => $request->phone]);
+        session(['address' => $request->address]);
+        $totalPrice = $this->total();
+        return view('stripe', get_defined_vars());
     }
-    
+
     /**
      * success response method.
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripePost(Request $request ,$totalPrice)
+    public function stripePost(Request $request)
     {
+
+        $order = Order::create([
+            'user_id' => auth()->id(),
+            'phone' => session('phone') ?? '',
+            'email' => session('email') ?? '',
+            'address' => session('address') ?? '',
+            'order_status' => 'pending',
+            'total' => $this->total(),
+            'discount' => session('phone') ?? '',
+            'delivery_charges' => session('phone') ?? '',
+        ]);
+        $cart = session()->get('cart', []);
+        foreach ($cart as $item) {
+            // Calculate the subtotal for each item (quantity * price) and add it to the total
+            $subtotal = $item['quantity'] * $item['price'];
+            OrderDetail::create([
+                'price' => $item['price'],
+                'quantity' => $item['quantity'],
+                'subtotal' => $item['quantity'] * $item['price'],
+                'product_id' => $item['id'],
+                'order_id' => $order->id
+            ]);
+        }
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-    
+
         Stripe\Charge::create ([
-                "amount" => $totalPrice * 100,
+                "amount" => $this->total() * 100,
                 "currency" => "GBP",
                 "source" => $request->stripeToken,
                 "description" => "Thanks For Payment." 
         ]);
 
-    Session::flash('success', 'Payment successful!');
 
-    // Redirect to the order history page
-    return redirect()->route('orders');
-}
+        Session::forget('cart');
+
+        Session::flash('success', 'Payment successful!');
+
+
+        return redirect()->route('orders');
     }
+    private function total()
+    {
+        $cart = session()->get('cart', []);
 
+        $total = 0; // Initialize the total to zero
+
+        foreach ($cart as $item) {
+            // Calculate the subtotal for each item (quantity * price) and add it to the total
+            $subtotal = $item['quantity'] * $item['price'];
+            $total += $subtotal;
+        }
+        return $total;
+    }
+}

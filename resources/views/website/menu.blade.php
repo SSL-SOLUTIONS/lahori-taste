@@ -8,9 +8,9 @@
             </h2>
         </div>
         <div class="filters-content">
-            <div class="row">
+            <div class="row p-3">
                 @foreach($products as $product) <!-- Loop through products -->
-                    <div class="col-sm-6 col-lg-4 all pizza">
+                    <div class="col-lg-4 col-md-6 all pizza">
                         <div class="box">
                             <div class="img-box">
                                 <img src="{{ asset('/img/products/' . $product->image) }}" alt="">
@@ -28,7 +28,7 @@
                                     </h6>
                                     <form class="col-12" action="{{ route('cart.add', ['product' => $product]) }}" method="POST">
                                         @csrf
-                                        <input type="number" name="quantity" min="1" value="1" class="quantity-input">
+                                        <input  style="max-width: 60%;" type="number" name="quantity" min="1" value="1" class="quantity-input">
                                         <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
                                     </form>
                                 </div>

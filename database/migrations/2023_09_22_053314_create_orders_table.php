@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-            Schema::create('orders', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('name')->nullable();
-                $table->string('email')->nullable();
-                $table->string('phone')->nullable();
-                $table->string('address')->nullable();
-                $table->unsignedBigInteger('product_id');
-                $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate(); // Foreign key relationship with customers ta
-                $table->string('quantity')->nullable();
-                $table->string('price')->nullable();
-                $table->string('image')->nullable();
-                $table->string('payment_status')->nullable();
-                $table->string('delivery_status')->nullable();
-                $table->timestamps();
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+
+            $table->enum('order_status', ['pending', 'processing' , 'delivered' , 'canceled']);
+            $table->string('total');
+            $table->string('discount')->nullable();
+            $table->string('delivery_charges')->nullable();
+            $table->timestamps();
         });
     }
 

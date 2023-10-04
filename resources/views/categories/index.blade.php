@@ -23,7 +23,7 @@
         <tbody>
             @foreach ($categories as $category)
                 <tr>
-                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->id }}:</td>
                     <td>{{ $category->title}}</td>
                     <td>{{ $category->description}}</td>
                     <td>

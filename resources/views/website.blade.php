@@ -12,9 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{{asset('images/logo.JPG')}}" type="">
-
-  <title>Lahori Taste</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{{asset('website/css/bootstrap.css')}}" />
 
@@ -24,16 +22,45 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
   <!-- font awesome style -->
   <link href="{{asset('website/css/font-awesome.min.css')}}" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
   <!-- Custom styles for this template -->
   <link href="{{asset('website/css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{asset('website/css/responsive.css')}}" rel="stylesheet" />
+
+  <title>Lahori Taste</title>
+  <style>
+    .vertical-navbar {
+      display: inline-block;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 80px;
+      height: 600px;
+      background-color: whitesmoke;
+    }
+
+    .vertical-navbar ul {
+      list-style-type: none;
+      padding: 10px;
+    }
+
+    .vertical-navbar li {
+      margin: 10px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-items: center;
+    }
+
+    .vertical-navbar li:hover {
+      background-color: #e3e3e3;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 
 <body>
-
   <div class="hero_area">
     <div class="bg-box">
       <img src="{{asset('website/images/hero-bg.jpg')}}" alt="">
@@ -47,11 +74,8 @@
               <img src="{{asset('images/logo.JPG')}}" alt="" class="img-fluid rounded-circle" style="max-width: 100px;">
             </span>
           </a>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
               <li class="nav-item active">
@@ -66,7 +90,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('orders')}}">Orders</a>
               </li>
-
             </ul>
             <div class="user_option">
               @if (auth()->check())
@@ -149,266 +172,180 @@
       </div>
     </header>
     <!-- end header section -->
-    <!-- slider section -->
-
-    <!-- end slider section -->
   </div>
-
-  <!-- offer section -->
-
-  <section class="offer_section layout_padding-bottom">
-    <div class="offer_container">
-      <div class="container">
-        <div class="row">
-          @foreach($categories as $category)
-          <div class="col-md-6">
-            <div class="box">
-              <div class="img-box">
-                <img src="{{ asset('img/categories/' . $category->image) }}" alt="" height="200">
+  <!-- food section -->
+  <section class="food_section layout_padding-bottom">
+    <div style="position: relative;" class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 p-5">
+          <div style="position: sticky; top:0" class="vertical-navbar">
+            <ul class="filters_menu" id="filters_menu">
+              <li data-filter="*" onclick="filterProducts('all');" class="active">All</li>
+              @foreach ($categories as $category)
+              <li data-filter=".{{ $category->title}}" onclick="filterProducts('{{ $category->id }}')">
+                {{ $category->title }}
+              </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 p-5">
+          <div class="heading_container heading_center">
+            <h2>Our Menu</h2>
+            @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ session()->get('message') }}
+            </div>
+            @endif
+          </div>
+          <div class="filters-content" id="products-container">
+            <div class="row">
+              @foreach ($products as $product)
+              <div class="col-lg-4 col-sm-6 all category-{{ $product->category?->id }}">
+                <div class="box m-3 p-0">
+                  <div class="img-box">
+                    <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
+                  </div>
+                  <div class="detail-box">
+                    <h5>  {{ Str::limit($product->name, $limit =8, $end = '...')}}</h5>
+                    <p> {{ Str::limit($product->description, $limit = 30, $end = '...')}}</p>
+                    <div class="options">
+                      <h6>${{ $product->price }}</h6>
+                      <form class="col-lg-12 col-md-12" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                        @csrf
+                        <input style="max-width: 60%;" type="number" name="quantity" min="1" value="1" class="quantity-input ">
+                        <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="detail-box"><br>
-                <!-- Add a data attribute to store the category ID -->
-                <a href="{{route('website')}}" class="category-link" data-category="{{ $category->id }}">
-                  {{ $category->title }}
-                </a>
-              </div>
+              @endforeach
             </div>
           </div>
-          @endforeach
-        </div><br>
-        <div id="related-products-container" class="row">
-          <!-- Related products will be displayed here -->
-        </div>
-        <div>
-          {{$categories->links()}}
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Include jQuery library (if not already included) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      // Add click event listener to category links
-      $(".category-link").on("click", function(e) {
-        e.preventDefault();
-
-        const categoryId = $(this).data("category");
-
-        // Use AJAX to fetch related products
-        $.ajax({
-          url: "/get-products", // Replace with the actual URL for fetching related products
-          type: "GET",
-          data: {
-            category: categoryId
-          },
-          success: function(data) {
-            // Update the related products container with the fetched data
-            const relatedProductsContainer = $("#related-products-container");
-            relatedProductsContainer.empty();
-
-            // Loop through the fetched products and display them
-            $.each(data, function(index, product) {
-              const productElement = $("<div>").addClass("col-sm-6 col-lg-4 all pizza")
-                .html(`
-                                <div class="box">
-                                    <div class="img-box">
-                                        <img src="${product.image}" alt="">
-                                    </div>
-                                    <div class="detail-box">
-                                        <h5>${product.name}</h5>
-                                        <p>${product.description}</p>
-                                        <div class="options">
-                                            <h6>£${product.price}</h6>
-                                            <form class="col-12" action="/cart/add" method="POST">
-    @csrf
-    <input type="hidden" name="product_id" value="${product.id}">
-    <input type="hidden" name="product_name" value="${product.name}">
-    <input type="hidden" name="product_description" value="${product.description}">
-    <input type="number" name="quantity" min="1" value="1" class="quantity-input">
-    <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
-</form>
-                                        </div>
-                                    </div>
-                                </div>
-                            `);
-
-              relatedProductsContainer.append(productElement);
-            });
-          },
-          error: function(error) {
-            console.error(error);
-          },
-        });
-      });
-    });
-  </script>
-
-
-
-
-
-  <!-- end offer section -->
-
-  <!-- food section -->
-
-  <section class="food_section layout_padding-bottom">
+  <!-- end food section -->
+  <!-- footer section -->
+  <footer class="footer_section">
     <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-
-        </h2>
-      </div>
-
-
-
-
-      <!-- end food section -->
-
-      <!-- about section -->
-
-      <section class="about_section layout_padding">
-        <div class="container  ">
-
-          <div class="row">
-            <div class="col-md-6 ">
-              <div class="img-box">
-                <img src="{{asset('website/images/about-img.png')}}" alt="">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="detail-box">
-                <div class="heading_container">
-                  <h2>
-                    Lahori Taste
-                  </h2>
-                </div>
-                <p>
-                  "Discover the flavorful delights of 'Taste of Lahore,' where culinary traditions come to life. Our menu is a celebration of Lahore's rich gastronomic heritage, offering an exquisite array of mouthwatering dishes that will transport you to the heart of this culinary paradise. From aromatic biryanis to succulent kebabs and sweet delights, every bite is a tribute to the authentic taste of Lahore. Indulge in the true essence of Lahori cuisine, where every dish tells a story of tradition, culture, and unparalleled taste. Come savor the Taste of Lahore experience like never before!"
-                </p>
-
-              </div>
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_contact">
+            <h4>
+              Contact Us
+            </h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  46 Bridge,Street Bolton,BL12EG
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +01204-353936
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- end about section -->
-
-      <!-- book section -->
-
-      <!-- end book section -->
-
-      <!-- client section -->
-
-
-
-      <!-- end client section -->
-
-      <!-- footer section -->
-      <footer class="footer_section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 footer-col">
-              <div class="footer_contact">
-                <h4>
-                  Contact Us
-                </h4>
-                <div class="contact_link_box">
-                  <a href="">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <span>
-                      46 Bridge,Street Bolton,BL12EG
-                    </span>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    <span>
-                      Call +01204-353936
-                    </span>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <span>
-                      demo@gmail.com
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 footer-col">
-              <div class="footer_detail">
-                <a href="" class="footer-logo">
-                  Lahori Taste
-                </a>
-                <p>
-                  Online Home Delivery At Your Doorstep
-                  (Your Event,Your Place,Our Exceptional Food,Any Occasion Any Location...)
-                </p>
-                <div class="footer_social">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-pinterest" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 footer-col">
-              <h4>
-                Opening Hours
-              </h4>
-              <p>
-                Everyday
-              </p>
-              <p>
-                10.00 Am -10.00 Pm
-              </p>
-            </div>
-          </div>
-          <div class="footer-info">
-            <p>
-              &copy; <span id="displayYear"></span> All Rights Reserved By
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="" class="footer-logo">
               Lahori Taste
-
+            </a>
+            <p>
+              Online Home Delivery At Your Doorstep
+              (Your Event,Your Place,Our Exceptional Food,Any Occasion Any Location...)
             </p>
+            <div class="footer_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
         </div>
-      </footer>
-      <!-- footer section -->
+        <div class="col-md-4 footer-col">
+          <h4>
+            Opening Hours
+          </h4>
+          <p>
+            Everyday
+          </p>
+          <p>
+            10.00 Am -10.00 Pm
+          </p>
+        </div>
+      </div>
+      <div class="footer-info">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          Lahori Taste
 
-      <!-- jQery -->
-      <script src="{{asset('website/js/jquery-3.4.1.min.js')}}"></script>
-      <!-- popper js -->
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-      </script>
-      <!-- bootstrap js -->
-      <script src="{{asset('website/js/bootstrap.js')}}"></script>
-      <!-- owl slider -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-      </script>
-      <!-- isotope js -->
-      <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
-      <!-- nice select -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
-      <!-- custom js -->
-      <script src="{{asset('website/js/custom.js')}}"></script>
-      <!-- Google Map -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-      </script>
-      <!-- End Google Map -->
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script src="{{asset('website/js/jquery-3.4.1.min.js')}}"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script src="{{asset('website/js/bootstrap.js')}}"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+  <!-- custom js -->
+  <script src="{{asset('website/js/custom.js')}}"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+  <script>
+    function filterProducts(category) {
+      // var url = '{{ route("website") }}?category=' + category;
+      // window.location.href = url;
+      if(category == 'all'){
+        $('.all').removeClass('d-none');
+
+      }else{
+        $('.all').addClass('d-none');
+        $('.category-' + category).removeClass('d-none');
+      }
+    }
+  </script>
 </body>
 
 </html>

@@ -10,11 +10,9 @@
   <!-- Site Metas -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
-  <meta name="author" content="" />
+  <meta name="author" content=""/>
   <link rel="shortcut icon" href="{{asset('images/logo.JPG')}}" type="">
-
-  <title>Lahori Taste</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{{asset('website/css/bootstrap.css')}}" />
 
@@ -24,17 +22,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
   <!-- font awesome style -->
   <link href="{{asset('website/css/font-awesome.min.css')}}" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
   <!-- Custom styles for this template -->
   <link href="{{asset('website/css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{asset('website/css/responsive.css')}}" rel="stylesheet" />
 
+  <title>Lahori Taste</title>
+  <style>
+  
+    .vertical-navbar {
+      display: inline-block;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 80px;
+      height: 600px;
+      background-color: whitesmoke;
+    }
+
+    .vertical-navbar ul {
+      list-style-type: none;
+      padding: 10px;
+    }
+    .vertical-navbar li {
+      margin: 10px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-items: center;
+    }
+    .vertical-navbar li:hover {
+      background-color: #e3e3e3;
+      border-radius: 5px;
+    }
+  </style>
 </head>
-
 <body>
-
   <div class="hero_area">
     <div class="bg-box">
       <img src="{{asset('website/images/hero-bg.jpg')}}" alt="">
@@ -45,14 +69,11 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="{{route('main')}}">
             <span>
-            <img src="{{asset('images/logo.JPG')}}" alt="" class="img-fluid rounded-circle" style="max-width: 100px;">
+              <img src="{{asset('images/logo.JPG')}}" alt="" class="img-fluid rounded-circle" style="max-width: 100px;">
             </span>
           </a>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
               <li class="nav-item active">
@@ -65,27 +86,27 @@
                 <a class="nav-link" href="{{route('about')}}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('order')}}">Orders</a>
+                <a class="nav-link" href="{{route('orders')}}">Orders</a>
               </li>
             </ul>
             <div class="user_option">
-    @if (auth()->check())
-        <!-- User is logged in, show logout option -->
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button style=" background: none;" type="submit" class="user_link">
-                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-            </button>
-        </form>
-    @else
-        <!-- User is not logged in, show signup and login options -->
-        <a href="{{ route('register') }}" class="user_link">
-            <i class="fa fa-user-plus" aria-hidden="true"></i> Signup
-        </a>
-        <a href="{{ route('login') }}" class="user_link">
-            <i class="fa fa-sign-in" aria-hidden="true"></i> Login
-        </a>
-    @endif
+              @if (auth()->check())
+              <!-- User is logged in, show logout option -->
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button style=" background: none;" type="submit" class="user_link">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                </button>
+              </form>
+              @else
+              <!-- User is not logged in, show signup and login options -->
+              <a href="{{ route('register') }}" class="user_link">
+                <i class="fa fa-user-plus" aria-hidden="true"></i> Signup
+              </a>
+              <a href="{{ route('login') }}" class="user_link">
+                <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+              </a>
+              @endif
               <a class="cart_link" href="{{route('cart')}}">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
@@ -140,7 +161,6 @@
                   </g>
                 </svg>
               </a>
-             
               <a href="{{route('menus')}}" class="order_online">
                 Order Online
               </a>
@@ -150,133 +170,65 @@
       </div>
     </header>
     <!-- end header section -->
-    <!-- slider section -->
-    <section class="slider_section">
-    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            @foreach($categories as $key => $category)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <div class="container">
+  </div>
+  <!-- food section -->
+  <section class="food_section layout_padding-bottom">
+    <div style="position: relative;" class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 p-5">
+                <div style="position: sticky; top:0" class="vertical-navbar">
+                    <ul class="filters_menu" id="filters_menu">
+                        <li data-filter="*">All</li>
+                        @foreach ($categories as $category)
+                            <li data-filter=".{{ $category->slug}}" onclick="filterProducts('{{ $category->id }}'); return false;">
+                                {{ $category->title }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 p-5">
+                <div class="heading_container heading_center">
+                    <h2>Our Menu</h2>
+                    @if(session()->has('message'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
+                </div>
+                <div  class="filters-content" id="products-container">
                     <div class="row">
-                        <div class="col-md-7 col-lg-6">
-                            <div class="detail-box">
-                                <!-- Add the image tag here with the category image URL -->
-                               
-                                <h1>{{ $category->title }}</h1>
-                                <p>{{ $category->description }}</p>
-                                <div class="btn-box">
-                                    <a href="{{route('menus')}}" class="btn1">Order Now</a>
+                        @foreach ($products as $product)
+                            <div class="col-lg-4 col-sm-6 {{ $product->category }}">
+                                <div class="box m-3 p-0">
+                                    <div class="img-box">
+                                        <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
+                                    </div>
+                                    <div class="detail-box">
+                                        <h5>{{ $product->name }}</h5>
+                                        <p>{{ $product->description }}</p>
+                                        <div class="options">
+                                            <h6>${{ $product->price }}</h6>
+                                            <form  class="col-lg-12 col-md-12" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                                                @csrf
+                                                <input style="max-width: 60%;" type="number" name="quantity" min="1" value="1" class="quantity-input ">
+                                                <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="container">
-            <ol class="carousel-indicators">
-                @foreach($categories as $key => $category)
-                <li data-target="#customCarousel1" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"></li>
-                @endforeach
-            </ol>
-        </div>
-    </div>
-</section>
-
-
-    <!-- end slider section -->
-  </div>
-
-  <!-- offer section -->
-
-  <section class="offer_section layout_padding-bottom">
-    <div class="offer_container">
-        <div class="container">
-            <div class="row">
-                @foreach($categories as $category)
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="{{ asset('img/categories/' . $category->image) }}" alt="" height="200">
-                        </div>
-                        <div class="detail-box"><br>
-                            <h5>{{$category->title}}</h5>
-                            <a href="{{ $category->link }}">
-                                Order Now <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                                    <!-- Your SVG code here -->
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div><br>
-            <div >
-            {{$categories->links()}}
             </div>
         </div>
     </div>
 </section>
-
-
-  <!-- end offer section -->
-
-  <!-- food section -->
-
-  <section class="food_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          
-        </h2>
-      </div>
-
-
-
-
   <!-- end food section -->
-
-  <!-- about section -->
-
-  <section class="about_section layout_padding">
-    <div class="container  ">
-
-      <div class="row">
-        <div class="col-md-6 ">
-          <div class="img-box">
-            <img src="{{asset('website/images/about-img.png')}}" alt="">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-              Lahori Taste
-              </h2>
-            </div>
-            <p>
-            "Discover the flavorful delights of 'Taste of Lahore,' where culinary traditions come to life. Our menu is a celebration of Lahore's rich gastronomic heritage, offering an exquisite array of mouthwatering dishes that will transport you to the heart of this culinary paradise. From aromatic biryanis to succulent kebabs and sweet delights, every bite is a tribute to the authentic taste of Lahore. Indulge in the true essence of Lahori cuisine, where every dish tells a story of tradition, culture, and unparalleled taste. Come savor the Taste of Lahore experience like never before!" 
-            </p>
-        
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end about section -->
-
-  <!-- book section -->
- 
-  <!-- end book section -->
-
-  <!-- client section -->
-
- 
-
-  <!-- end client section -->
-
   <!-- footer section -->
   <footer class="footer_section">
     <div class="container">
@@ -290,7 +242,7 @@
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
-                46 Bridge,Street Bolton,BL12EG
+                  46 Bridge,Street Bolton,BL12EG
                 </span>
               </a>
               <a href="">
@@ -314,8 +266,8 @@
               Lahori Taste
             </a>
             <p>
-             Online Home Delivery At Your Doorstep
-             (Your Event,Your Place,Our Exceptional Food,Any Occasion Any Location...)
+              Online Home Delivery At Your Doorstep
+              (Your Event,Your Place,Our Exceptional Food,Any Occasion Any Location...)
             </p>
             <div class="footer_social">
               <a href="">
@@ -352,7 +304,7 @@
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
           Lahori Taste
-          &copy; 
+
         </p>
       </div>
     </div>
@@ -379,6 +331,18 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
   <!-- End Google Map -->
+  <script>
+      function filterProducts(categoryId) {
+      var url = '{{ route("website") }}?category=' + categoryId;
+      window.location.href = url;
+    }
+</script>
 </body>
 
 </html>
+
+
+
+
+
+

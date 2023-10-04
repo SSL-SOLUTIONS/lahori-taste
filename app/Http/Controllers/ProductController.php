@@ -102,7 +102,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100',
-            'image' => 'required|image',
+            'image' => 'nullable|image',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
             'description' => 'required|max:500',
@@ -134,4 +134,21 @@ class ProductController extends Controller
        Product::where('id', $id)->delete();
         return redirect()->route('products.index')->with('success','Product Removed Successfully'); 
     }
+
+
+    public function getProductsByCategory(Request $request, $category)
+{
+    // Find the category by its slug or any unique identifier
+    $category = Category::where('slug', $category)->first();
+
+    if (!$category) {
+        return response()->json(['error' => 'Category not found'], 404);
+    }
+
+    // Retrieve products based on the category ID
+    $products = Product::where('category_id', $category->id)->get();
+
+    // Return the products as a JSON response
+    return response()->json($products);
+}
 }

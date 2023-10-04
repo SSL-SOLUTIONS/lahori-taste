@@ -32,17 +32,12 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
                 'price' => $product->price * $request->quantity,
             ];
-
             $cart[$product->id] = $cartItemData;
         }
-
         // Update the cart in the session
         $request->session()->put('cart', $cart);
-
-        return redirect()->route('menus')->with('success', 'Item added to cart.');
+        return redirect()->back()->with('message', 'Item added to cart Successfully.');
     }
-
-    
     public function viewCart(Request $request)
     {
         $cart = $request->session()->get('cart', []);
@@ -60,13 +55,9 @@ class CartController extends Controller
         if (array_key_exists($id, $cart)) {
             // Remove the item from the cart
             unset($cart[$id]);
-
-            // Update the cart in the session
             $request->session()->put('cart', $cart);
-
             return redirect()->route('cart')->with('success', 'Item removed from cart.');
         }
-
         return redirect()->route('cart')->with('error', 'Item not found in cart.');
     }
 }

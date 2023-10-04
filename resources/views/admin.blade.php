@@ -24,7 +24,7 @@
   <!-- Layout styles -->
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
   <!-- End layout styles -->
-  <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
+  <link rel="shortcut icon" href="{{asset('images/logo.JPG')}}" />
 
 
 </head>
@@ -33,14 +33,12 @@
   <div class="container-scroller">
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
-      <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <img src="{{ asset('/images/logo.JPG')}}" alt="" class="img-fluid rounded-circle mt-6 " style="width: 100px; height: 60px;">
+      <div class="sidebar-brand-wrapper d-none d-lg-flex  fixed-top">
+        <img src="{{ asset('/images/logo.JPG')}}" alt="" class="img-fluid rounded-circle mt-6" style="width: 100px; height: 60px;">
       </div>
-      <ul class="nav">
+      <ul class="nav col-12">
         <li class="nav-item profile">
-
           <br><br>
-
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
             <span class="menu-icon">
@@ -60,9 +58,6 @@
             </ul>
           </div>
         </li>
-
-
-        
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls=" categories">
             <span class="menu-icon">
@@ -102,8 +97,6 @@
             </ul>
           </div>
         </li>
-
-
         </li>
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('order')}}">
@@ -113,24 +106,7 @@
             <span class="menu-title">Order</span>
           </a>
         </li>
-
-
-
-
-
-        <div class="collapse" id="auth">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-          </ul>
-        </div>
         </li>
-
-
-
       </ul>
     </nav>
     <!-- partial -->
@@ -144,14 +120,10 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          <ul class="navbar-nav w-100">
-
+          <ul class="navbar-nav">
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
-
-
-
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">

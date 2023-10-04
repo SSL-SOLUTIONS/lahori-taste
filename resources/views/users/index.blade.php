@@ -9,7 +9,7 @@
     @endif
     <h2>User List</h2>
     <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
-    <table class="table table-bordered mt-3">
+    <table class="col-lg-12 table-bordered mt-3">
         <thead>
             <tr>
                 <th>ID</th>
