@@ -11,7 +11,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="{{asset('images/logo.JPG')}}" type="">
+  <link rel="shortcut icon" href="{{asset('images/Favicon.png')}}" type="">
 
   <title>Lahori Taste</title>
 
@@ -31,15 +31,84 @@
   <!-- responsive style -->
   <link href="{{asset('website/css/responsive.css')}}" rel="stylesheet" />
   <!-- stripe links -->
+  <style>
+    /* Center the pagination and add some spacing */
+    .text-center {
+      text-align: center;
+    }
 
-  
+    .pagination-container {
+      display: inline-block;
+      margin-top: 20px;
+      /* Adjust the margin-top as needed for spacing */
+    }
+
+    /* Style the pagination links */
+    .pagination {
+      display: inline-block;
+      padding-left: 0;
+      margin: 0;
+      border-radius: 4px;
+    }
+
+    .pagination li {
+      display: inline;
+    }
+
+    .pagination li a,
+    .pagination li span {
+      position: relative;
+      float: left;
+      padding: 6px 12px;
+      margin-left: -1px;
+      line-height: 1.42857143;
+      text-decoration: none;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      color: #337ab7;
+    }
+
+    .pagination li:first-child a,
+    .pagination li:first-child span {
+      margin-left: 0;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    .pagination li:last-child a,
+    .pagination li:last-child span {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    /* Style the active pagination link */
+    .pagination .active a,
+    .pagination .active span {
+      z-index: 2;
+      color: #fff;
+      background-color: #337ab7;
+      border-color: #337ab7;
+      cursor: default;
+    }
+
+    /* Style the disabled pagination link */
+    .pagination .disabled span,
+    .pagination .disabled a,
+    .pagination .disabled a:hover {
+      color: #777;
+      background-color: #fff;
+      border-color: #ddd;
+      cursor: not-allowed;
+    }
+  </style>
+
 
 </head>
 
 <body class="sub_page">
   <div class="hero_area">
     <div class="bg-box">
-      <img src="{{asset('website/images/hero-bg.jpg')}}" alt="">
+      <img class="img-fluid" src="{{asset('images/image-1.jpg')}}" alt="">
     </div>
     <!-- header section strats -->
     <header class="header_section">
@@ -47,47 +116,31 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="{{route('main')}}">
             <span>
-            <img src="{{asset('images/logo.JPG')}}" alt="" class="img-fluid rounded-circle" style="max-width: 100px;">
+              <img class="img-fluid" style="height: 40px;" src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="">
             </span>
           </a>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class=""> </span>
           </button>
-
-          <div class="collapse navbar-collapse  " id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
-            <li class="nav-item{{ request()->routeIs('main') ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('main') }}">Home</a>
-        </li>
-        <li class="nav-item{{ request()->routeIs('menus') ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('menus') }}">Menu</a>
-        </li>
-        <li class="nav-item{{ request()->routeIs('about') ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('about') }}">About</a>
-        </li>
-        <li class="nav-item{{ request()->routeIs('orders') ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('orders') }}">Orders</a>
-        </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('main')}}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('menus')}}">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('about')}}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('orders')}}">Order Now</a>
+              </li>
             </ul>
             <div class="user_option">
-    @if (auth()->check())
-        <!-- User is logged in, show logout option -->
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button style=" background: none;"  type="submit" class="user_link">
-                <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout
-            </button>
-        </form>
-    @else
-        <!-- User is not logged in, show signup and login options -->
-        <a href="{{ route('register') }}" class="user_link">
-            <i class="fas fa-user-plus" aria-hidden="true"></i> Signup
-        </a>
-        <a href="{{ route('login') }}" class="user_link">
-            <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login
-        </a>
-    @endif
+              <a href="#" class="user_link" id="userIcon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </a>
               <a class="cart_link" href="{{route('cart')}}">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
@@ -142,8 +195,7 @@
                   </g>
                 </svg>
               </a>
-              
-              <a href="{{route('menus')}}" class="order_online">
+              <a href="" class="order_online">
                 Order Online
               </a>
             </div>
@@ -151,9 +203,10 @@
         </nav>
       </div>
     </header>
+
     <!-- end header section -->
   </div>
-@yield('content')
+  @yield('content')
 
 
 
@@ -171,13 +224,13 @@
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
-                46 Bridge,Street Bolton,BL12EG
+                  46 Bridge,Street Bolton,BL12EG
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                Call +01204-353936
+                  Call +01204-353936
                 </span>
               </a>
               <a href="">
@@ -195,8 +248,8 @@
               Lahori Taste
             </a>
             <p>
-            Online Home Delivery At Your Doorstep
-             (Your Event,Your Place,Our Exceptional Food,Any Occasion Any Location...)
+              Online Home Delivery At Your Doorstep
+              (Your Event,Your Place,Our Exceptional Food,Any Occasion Any Location...)
             </p>
             <div class="footer_social">
               <a href="">
