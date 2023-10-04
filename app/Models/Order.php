@@ -10,7 +10,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = [''];
+protected $fillable = ['user_id','phone','address', 'order_status', 'total',' discount', 'delivery_charges'
+
+    ];
 
 
     /**

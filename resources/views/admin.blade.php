@@ -17,16 +17,11 @@
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.carousel.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
 
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-
-  <!-- endinject -->
+  
   <!-- Layout styles -->
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{asset('images/logo.JPG')}}" />
-
-
 </head>
 
 <body>
@@ -177,10 +172,9 @@
           @yield('content')
 
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
+      
 
-        <!-- partial -->
+     
       </div>
       <!-- main-panel ends -->
     </div>

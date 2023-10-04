@@ -40,19 +40,16 @@
       height: 600px;
       background-color: whitesmoke;
     }
-
     .vertical-navbar ul {
       list-style-type: none;
       padding: 10px;
     }
-
     .vertical-navbar li {
       margin: 10px 0;
       cursor: pointer;
       transition: background-color 0.3s ease;
       align-items: center;
     }
-
     .vertical-navbar li:hover {
       background-color: #e3e3e3;
       border-radius: 5px;
@@ -210,13 +207,13 @@
                     <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
                   </div>
                   <div class="detail-box">
-                    <h5>  {{ Str::limit($product->name, $limit =8, $end = '...')}}</h5>
+                    <h6> <b> {{ Str::limit($product->name, $limit =15, $end = '...')}} </b></h6>
                     <p> {{ Str::limit($product->description, $limit = 30, $end = '...')}}</p>
                     <div class="options">
-                      <h6>${{ $product->price }}</h6>
+                      <h3>${{ $product->price }}</h3>
                       <form class="col-lg-12 col-md-12" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
                         @csrf
-                        <input style="max-width: 60%;" type="number" name="quantity" min="1" value="1" class="quantity-input ">
+                        <input style="max-width: 40%;" type="number" name="quantity" min="1" value="1" class="quantity-input  ">
                         <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
                       </form>
                     </div>
@@ -337,10 +334,10 @@
     function filterProducts(category) {
       // var url = '{{ route("website") }}?category=' + category;
       // window.location.href = url;
-      if(category == 'all'){
+      if (category == 'all') {
         $('.all').removeClass('d-none');
 
-      }else{
+      } else {
         $('.all').addClass('d-none');
         $('.category-' + category).removeClass('d-none');
       }

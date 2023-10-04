@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Lahori Taste</title>
+@extends('layouts.website')
+@section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-
-<body>
-
     <div class="container">
-
         <h1></h1>
-
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default credit-card-box">
@@ -34,7 +26,7 @@
 
                             <div class='form-row row'>
                                 <div class='col-xs-12 form-group required'>
-                                    <label class='control-label'>Name on Card</label> <input class='form-control' size='4' type='number'>
+                                    <label class='control-label'>Name on Card</label> <input class='form-control' size='4' type='text'>
                                 </div>
                             </div>
 
@@ -151,3 +143,4 @@
 </script>
 
 </html>
+@endsection

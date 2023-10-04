@@ -10,7 +10,7 @@
   <!-- Site Metas -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
-  <meta name="author" content=""/>
+  <meta name="author" content="" />
   <link rel="shortcut icon" href="{{asset('images/logo.JPG')}}" type="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <!-- bootstrap core css -->
@@ -32,7 +32,6 @@
 
   <title>Lahori Taste</title>
   <style>
-  
     .vertical-navbar {
       display: inline-block;
       padding: 20px;
@@ -46,18 +45,21 @@
       list-style-type: none;
       padding: 10px;
     }
+
     .vertical-navbar li {
       margin: 10px 0;
       cursor: pointer;
       transition: background-color 0.3s ease;
       align-items: center;
     }
+
     .vertical-navbar li:hover {
       background-color: #e3e3e3;
       border-radius: 5px;
     }
   </style>
 </head>
+
 <body>
   <div class="hero_area">
     <div class="bg-box">
@@ -174,60 +176,60 @@
   <!-- food section -->
   <section class="food_section layout_padding-bottom">
     <div style="position: relative;" class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 p-5">
-                <div style="position: sticky; top:0" class="vertical-navbar">
-                    <ul class="filters_menu" id="filters_menu">
-                        <li data-filter="*">All</li>
-                        @foreach ($categories as $category)
-                            <li data-filter=".{{ $category->slug}}" onclick="filterProducts('{{ $category->id }}'); return false;">
-                                {{ $category->title }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 p-5">
-                <div class="heading_container heading_center">
-                    <h2>Our Menu</h2>
-                    @if(session()->has('message'))
-                        <div class="alert alert-success alert-dismissible fade show">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            {{ session()->get('message') }}
-                        </div>
-                    @endif
-                </div>
-                <div  class="filters-content" id="products-container">
-                    <div class="row">
-                        @foreach ($products as $product)
-                            <div class="col-lg-4 col-sm-6 {{ $product->category }}">
-                                <div class="box m-3 p-0">
-                                    <div class="img-box">
-                                        <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
-                                    </div>
-                                    <div class="detail-box">
-                                        <h5>{{ $product->name }}</h5>
-                                        <p>{{ $product->description }}</p>
-                                        <div class="options">
-                                            <h6>${{ $product->price }}</h6>
-                                            <form  class="col-lg-12 col-md-12" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
-                                                @csrf
-                                                <input style="max-width: 60%;" type="number" name="quantity" min="1" value="1" class="quantity-input ">
-                                                <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 p-5">
+          <div style="position: sticky; top:0" class="vertical-navbar">
+            <ul class="filters_menu" id="filters_menu">
+              <li data-filter="*" onclick="filterProducts('all');" class="active">All</li>
+              @foreach ($categories as $category)
+              <li data-filter=".{{ $category->title}}" onclick="filterProducts('{{ $category->id }}')">
+                {{ $category->title }}
+              </li>
+              @endforeach
+            </ul>
+          </div>
         </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 p-5">
+          <div class="heading_container heading_center">
+            <h2>Our Menu</h2>
+            @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ session()->get('message') }}
+            </div>
+            @endif
+          </div>
+          <div class="filters-content" id="products-container">
+            <div class="row">
+              @foreach ($products as $product)
+              <div class="col-lg-4 col-sm-6 all category-{{ $product->category?->id }}">
+                <div class="box m-3 p-0">
+                  <div class="img-box">
+                    <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
+                  </div>
+                  <div class="detail-box">
+                    <h5>  {{ Str::limit($product->name, $limit =8, $end = '...')}}</h5>
+                    <p> {{ Str::limit($product->description, $limit = 30, $end = '...')}}</p>
+                    <div class="options">
+                      <h6>${{ $product->price }}</h6>
+                      <form class="col-lg-12 col-md-12" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                        @csrf
+                        <input style="max-width: 60%;" type="number" name="quantity" min="1" value="1" class="quantity-input ">
+                        <button type="submit" class="add-to-cart"><i class="fas fa-shopping-cart cart-icon"></i></button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
   <!-- end food section -->
   <!-- footer section -->
   <footer class="footer_section">
@@ -332,17 +334,18 @@
   </script>
   <!-- End Google Map -->
   <script>
-      function filterProducts(categoryId) {
-      var url = '{{ route("website") }}?category=' + categoryId;
-      window.location.href = url;
+    function filterProducts(category) {
+      // var url = '{{ route("website") }}?category=' + category;
+      // window.location.href = url;
+      if(category == 'all'){
+        $('.all').removeClass('d-none');
+
+      }else{
+        $('.all').addClass('d-none');
+        $('.category-' + category).removeClass('d-none');
+      }
     }
-</script>
+  </script>
 </body>
 
 </html>
-
-
-
-
-
-
