@@ -43,14 +43,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');
     Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
     // Route for viewing order history
-    Route::get('/orders', [WebsiteController::class, 'orders'])->name('orders');
     Route::get('/process-to-checkout', [OrderController::class, 'processToCheckout'])->name('processToCheckout');
-    // Route for placing an order
-    Route::post('/place-order', [WebsiteController::class, 'placeOrder'])->name('place-order');
-    Route::controller(StripePaymentController::class)->group(function () {
+
+
+    Route::get('/orderdetails/{id}',[OrderController::class,'orderdetails'])->name('orderdetails');
+     Route::controller(StripePaymentController::class)->group(function () {
         Route::post('stripe-view', 'stripe')->name('stripe.view');
         Route::post('stripe-store', 'stripePost')->name('stripe.post');
     });
+
+
+    // user routes 
+    Route::get('/orders', [WebsiteController::class, 'orders'])->name('orders');
+    Route::get('/order-details/{id?}', [WebsiteController::class, 'orderDetails'])->name('orders.details');
+
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\MenuItem;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,6 @@ class WebsiteController extends Controller
         } else {
             $products = Product::all();
         }
-
         return view('website', compact('products', 'categories'));
     }
 
@@ -42,12 +42,11 @@ class WebsiteController extends Controller
 
         // Retrieve products filtered by category if a category is specified
         if ($categoryId) {
-            $products = Product::where('category', $categoryId)->get();
+            $products = Product::where('category_id', $categoryId)->get();
         } else {
-            $products = Product::paginate(12);
+            $products = Product::all();
         }
-
-        return view('website.main', compact('products', 'categories'));
+        return view('website', compact('products', 'categories'));
     }
 
     public function menus($category = null)
@@ -61,7 +60,6 @@ class WebsiteController extends Controller
             // If no category is provided, fetch all products with pagination
             $products = Product::paginate(9);
         }
-
         // Pass the products to the view
         return view('website.menu')->with('products', $products);
     }
@@ -89,41 +87,15 @@ class WebsiteController extends Controller
     public function orders()
     {
         // Retrieve cart data from session
-        $cartItems = session()->get('cart', []);
+        $orders = Order::whereUserId(auth()->id())->get();
 
-        return view('website.order', ['orders' => $cartItems]);
+        return view('website.orders.index', get_defined_vars());
+    }
+    public function orderDetails($id){
+        $orderdetails = OrderDetail::where('order_id', $id)->whereHas('order' , function($q){
+            $q->whereUserId(auth()->id());
+        })->get();
+        return view('website.orders.show', compact('orderdetails'));
     }
 
-
-    public function placeOrder(Request $request)
-    {
-        // Get user information and cart data
-        $user = auth()->user();
-        $userId = $user->id;
-        $cartItems = session()->get('cart', []);
-
-        // Create an array to store order data
-        $orderData = [];
-
-        // Create orders based on cart items and add them to the order data array
-        foreach ($cartItems as $cartItem) {
-            $orderData[] = [
-                'user_id' => $userId,
-                'product_id' => $cartItem['product_id'],
-                'quantity' => $cartItem['quantity'],
-                'price' => $cartItem['price'],
-                'payment_status' => 'paid',
-                'delivery_status' => 'processing',
-            ];
-        }
-
-        // Store the order data in the session under the key 'pending_orders'
-        session(['pending_orders' => $orderData]);
-
-        // Clear the cart in the session
-        session()->forget('cart');
-
-        // Redirect to the order history page
-        return redirect()->route('orders')->with('success', 'Order placed successfully!');
-    }
 }

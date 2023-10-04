@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-
             $table->enum('order_status', ['pending', 'processing' , 'delivered' , 'canceled']);
             $table->string('total');
             $table->string('discount')->nullable();

@@ -40,19 +40,16 @@
       height: 600px;
       background-color: whitesmoke;
     }
-
     .vertical-navbar ul {
       list-style-type: none;
       padding: 10px;
     }
-
     .vertical-navbar li {
       margin: 10px 0;
       cursor: pointer;
       transition: background-color 0.3s ease;
       align-items: center;
     }
-
     .vertical-navbar li:hover {
       background-color: #e3e3e3;
       border-radius: 5px;

@@ -33,9 +33,7 @@
                     <td>{{$product->category->title}}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>
-                      
                          <img height="150px" width="150px" src="{{asset('/img/products/'. $product->image)}}">
-                       
                     </td>
                     <td>
                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
