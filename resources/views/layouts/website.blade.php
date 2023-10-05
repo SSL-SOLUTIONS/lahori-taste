@@ -124,23 +124,36 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{route('main')}}">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('main') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('menus')}}">Menu</a>
+                <a class="nav-link {{ request()->is('menus') ? 'active' : '' }}" href="{{ route('menus') }}">Menu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('about')}}">About</a>
+                <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('orders')}}">Order Now</a>
+                <a class="nav-link {{ request()->is('orders') ? 'active' : '' }}" href="{{ route('orders') }}">My Orders</a>
               </li>
             </ul>
             <div class="user_option">
-              <a href="#" class="user_link" id="userIcon">
-                <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
+            <div class="dropdown">
+                  <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="userIcon">
+                    @auth
+                    <button class="dropdown-item" href="">Profile</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                      @csrf
+                      <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
+                    @else
+                    <button class="dropdown-item" href="{{route('login')}}">Login</button>
+                    @endauth
+                  </div>
+                </div>
               <a class="cart_link" href="{{route('cart')}}">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
@@ -194,8 +207,9 @@
                   <g>
                   </g>
                 </svg>
+                <h6 style="color: white;">({{ $cartCount }})</h6> 
               </a>
-              <a href="" class="order_online">
+              <a href="{{route('menus')}}" class="order_online">
                 Order Online
               </a>
             </div>

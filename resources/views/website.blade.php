@@ -8,7 +8,7 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <meta name="keywords" content="" />
+  <meta name="keywords" content=""/>
   <meta name="description" content="" />
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="">
@@ -40,16 +40,19 @@
       height: 600px;
       background-color: whitesmoke;
     }
+
     .vertical-navbar ul {
       list-style-type: none;
       padding: 10px;
     }
+
     .vertical-navbar li {
       margin: 10px 0;
       cursor: pointer;
       transition: background-color 0.3s ease;
       align-items: center;
     }
+
     .vertical-navbar li:hover {
       background-color: #e3e3e3;
       border-radius: 5px;
@@ -95,13 +98,26 @@
                   <a class="nav-link" href="{{route('about')}}">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('orders')}}">Order Now</a>
+                  <a class="nav-link" href="{{route('orders')}}">My Orders</a>
                 </li>
               </ul>
               <div class="user_option">
-                <a href="#" class="user_link" id="userIcon">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                </a>
+                <div class="dropdown">
+                  <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="userIcon">
+                    @auth
+                    <button class="dropdown-item" href="">Profile</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                      @csrf
+                      <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
+                    @else
+                    <a class="dropdown-item" href="{{route('login')}}">Login</a>
+                    @endauth
+                  </div>
+                </div>
                 <a class="cart_link" href="{{route('cart')}}">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                     <g>
@@ -156,7 +172,8 @@
                     </g>
                   </svg>
                 </a>
-                <a href="" class="order_online">
+                <h6 style="color: white;" >({{ $cartCount }})</h6> 
+                <a href="{{route('menus')}}" class="order_online">
                   Order Online
                 </a>
               </div>
@@ -175,12 +192,11 @@
                   <div class="col-md-7 col-lg-6 ">
                     <div class="detail-box">
                       <h1>
-                        Fast Food Restaurant
+                        Lahori Taste
                       </h1>
                       <p>
-                        Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam
-                        quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos
-                        nihil ducimus libero ipsam.
+                        "Discover the flavorful delights of 'Taste of Lahore,' where culinary traditions come to life. Our menu is a celebration of Lahore's rich gastronomic heritage, offering an exquisite array of mouthwatering dishes that will transport you to the heart of this culinary paradise. From aromatic biryanis to succulent kebabs and sweet delights, every bite is a tribute to the authentic taste of Lahore. Indulge in the true essence of Lahori cuisine, where every dish tells a story of tradition, culture, and unparalleled taste. Come savor the Taste of Lahore experience like never before!"
+
                       </p>
                       <div class="btn-box">
                         <a href="" class="btn1">
@@ -198,15 +214,14 @@
                   <div class="col-md-7 col-lg-6 ">
                     <div class="detail-box">
                       <h1>
-                        Lahori Taste Restaurant
+                        Lahori Taste
                       </h1>
                       <p>
-                        Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam
-                        quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos
-                        nihil ducimus libero ipsam.
+                        "Discover the flavorful delights of 'Taste of Lahore,' where culinary traditions come to life. Our menu is a celebration of Lahore's rich gastronomic heritage, offering an exquisite array of mouthwatering dishes that will transport you to the heart of this culinary paradise. From aromatic biryanis to succulent kebabs and sweet delights, every bite is a tribute to the authentic taste of Lahore. Indulge in the true essence of Lahori cuisine, where every dish tells a story of tradition, culture, and unparalleled taste. Come savor the Taste of Lahore experience like never before!"
+
                       </p>
                       <div class="btn-box">
-                        <a href="" class="btn1">
+                        <a href="{{route('menus')}}" class="btn1">
                           Order Now
                         </a>
                       </div>
@@ -221,15 +236,14 @@
                   <div class="col-md-7 col-lg-6 ">
                     <div class="detail-box">
                       <h1>
-                        Fast Food Restaurant
+                        Lahori Taste
                       </h1>
                       <p>
-                        Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam
-                        quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos
-                        nihil ducimus libero ipsam.
+                        "Discover the flavorful delights of 'Taste of Lahore,' where culinary traditions come to life. Our menu is a celebration of Lahore's rich gastronomic heritage, offering an exquisite array of mouthwatering dishes that will transport you to the heart of this culinary paradise. From aromatic biryanis to succulent kebabs and sweet delights, every bite is a tribute to the authentic taste of Lahore. Indulge in the true essence of Lahori cuisine, where every dish tells a story of tradition, culture, and unparalleled taste. Come savor the Taste of Lahore experience like never before!"
+
                       </p>
                       <div class="btn-box">
-                        <a href="" class="btn1">
+                        <a href="{{route('menus')}}" class="btn1">
                           Order Now
                         </a>
                       </div>
@@ -291,16 +305,16 @@
                     <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
                   </div>
                   <div class="detail-box">
-                    <h5> {{ Str::limit($product->name, $limit =8, $end = '...')}}</h5>
+                  <h5> {{ Str::limit($product->name, $limit =15, $end = '...')}}</h5>
                     <p> {{ Str::limit($product->description, $limit = 30, $end = '...')}}</p>
                     <div class="options">
                       <h6 class="text-start">
                         <h5 style="margin-top: 7px;">£{{ $product->price }}</h5>
                       </h6>
-                      <form class="col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                      <form id="addToCartForm" class="col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
                         @csrf
                         <input class="quantity-input" id="inputQuantity" type="number" name="quantity" min="1" value="1">
-                        <a href="#">
+                        <a href="#" id="addToCartButton">
                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                             <g>
                               <g>
@@ -484,6 +498,18 @@
         $('.category-' + category).removeClass('d-none');
       }
     }
+  </script>
+
+  <script>
+    document.getElementById('addToCartButton').addEventListener('click', function(event) {
+      event.preventDefault();
+      const quantity = parseInt(document.getElementById('inputQuantity').value);
+      if (quantity > 0) {
+        document.getElementById('addToCartForm').submit();
+      } else {
+        alert('Please enter a valid quantity.');
+      }
+    });
   </script>
 
 </body>

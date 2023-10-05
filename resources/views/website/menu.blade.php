@@ -14,23 +14,23 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 all pizza">
                         <div class="box">
                             <div class="img-box">
-                                <img src="{{ asset('/img/products/' . $product->image) }}" alt="">
+                                <img src="{{ asset('/img/products/'.$product->image) }}" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    {{ $product->name }}
+                                {{ Str::limit($product->name, $limit =15, $end = '...')}}
                                 </h5>
                                 <p>
-                                    {{ $product->description }}
+                                {{ Str::limit($product->description, $limit = 30, $end = '...')}}
                                 </p>
                                 <div class="options">
                                     <h5>
                                         £{{ $product->price }}
                                     </h5>
-                                    <form class="col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                                    <form id="addToCartForm"  class="  col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
                                         @csrf
-                                        <input class="quantity-input" type="number" name="quantity" min="1" value="1" style="max-width: 30%;margin: 10px 55px 0 10px;height: 20px;background-color: #e3e3e3;">
-                                        <a href="#">
+                                        <input class="quantity-input" id="inputQuantity" type="number" name="quantity" min="1" value="1" style="max-width: 30%;margin: 10px 55px 0 10px;height: 20px;background-color: #e3e3e3;">
+                                        <a id="addToCartButton" href="">
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                                 <g>
                                                     <g>
@@ -93,12 +93,20 @@
                 </div>
             </div>
         </div>
-        <div class="text-center pb-4">
-            <div class="pagination-container">
-                {{$products->links()}}
-            </div>
         </div>
     </div>
 </section>
 <!-- end food section -->
+<script>
+    document.getElementById('addToCartButton').addEventListener('click', function(event) {
+      event.preventDefault();
+      const quantity = parseInt(document.getElementById('inputQuantity').value);
+      if (quantity > 0) {
+        document.getElementById('addToCartForm').submit();
+        alert('Item Added To Cart Successfully')
+      } else {
+        alert('Please enter a valid quantity.');
+      }
+    });
+  </script>
 @endsection

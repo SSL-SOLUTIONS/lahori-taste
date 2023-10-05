@@ -34,6 +34,8 @@ class CartController extends Controller
             ];
             $cart[$product->id] = $cartItemData;
         }
+
+        
         // Update the cart in the session
         $request->session()->put('cart', $cart);
         return redirect()->back()->with('message', 'Item added to cart Successfully.');

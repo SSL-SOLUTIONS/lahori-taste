@@ -32,21 +32,21 @@ Route::get('/about', [WebsiteController::class, 'about'])->name('about');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 
 //  Admin Panel Routes
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/panel', [AdminController::class, 'panel'])->middleware('auth', 'can:isAdmin');
+Route::middleware(["auth", "isAdmin"])->group(function () {
+    Route::get('/panel', [AdminController::class, 'panel'])->name('panel');
     Route::resource('/users', UserController::class);
     Route::get('/order', [OrderController::class, 'order'])->name('order');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::get('/orderdetails/{id}',[OrderController::class,'orderdetails'])->name('orderdetails');
+
+});
+Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
     Route::post('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');
     Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
     // Route for viewing order history
     Route::get('/process-to-checkout', [OrderController::class, 'processToCheckout'])->name('processToCheckout');
-
-
-    Route::get('/orderdetails/{id}',[OrderController::class,'orderdetails'])->name('orderdetails');
      Route::controller(StripePaymentController::class)->group(function () {
         Route::post('stripe-view', 'stripe')->name('stripe.view');
         Route::post('stripe-store', 'stripePost')->name('stripe.post');

@@ -23,6 +23,7 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
+                    <th scope="col">Order #</th>
                     <th scope="col">Address</th>
                     <th scope="col">Discount</th>
                     <th scope="col">Delivery Charges</th>
@@ -34,7 +35,8 @@
             <tbody>
                 @foreach($orders as $key => $order)
                 <tr>
-                    <td> <a href="{{route('orders.details' , $order->ids)}}">{{ $order->address}}</a> </td>
+                    <td> <a href="{{route('orders.details' , $order->id )}}">{{ $order->id}}</a> </td>
+                    <td>{{ $order->address}} </td>
                     <td>{{config('app.currency')}} {{ $order->discount ?? '0' }}</td>
                     <td>{{config('app.currency')}} {{ $order->delivery_charges ?? '0'}}</td>
                     <td>{{config('app.currency')}} {{ $order->delivery_charges + $order->total - $order->discount }}</td>
@@ -46,5 +48,6 @@
         </table>
     </div>
 </div>
+
 <br>
 @endsection

@@ -55,9 +55,9 @@
     <div class="text-left">
         <p><strong>Total Price: ${{ number_format($totalPrice, 2) }}</strong></p>
     </div>
-    <div class="text-center">
+    @if ($totalPrice > 0)
         <a class="btn btn-warning" href="{{ route('processToCheckout') }}">Process to Checkout</a>
-    </div>
+    @endif
 </div>
 </div>
 <br>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('password');
-            $table->tinyInteger('usertype')->default(0); // 0 for regular users, 1 for admin users
+            $table->enum("role" , ["admin" , "user" ])->default("user");
             $table->timestamps(); 
         });
     }

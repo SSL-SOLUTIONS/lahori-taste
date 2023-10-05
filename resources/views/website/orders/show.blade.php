@@ -18,7 +18,7 @@
 </div>
 @endif
 <div class="container mt-4">
-    <h1 class="text-center">Order History</h1>
+    <h1 class="text-center">Order Detail</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($orderdetails as $key => $orderdetail)
+                @foreach($order->orderDetails as $key => $orderdetail)
                 <tr>
                     <td>{{ $orderdetail->product?->name }} </td>
                     <td class="text-center">
@@ -43,6 +43,22 @@
                     <td>{{config('app.currency')}} {{ $orderdetail->qty * $orderdetail->price  }}</td>
                 </tr>
                 @endforeach
+                <tr>
+                    <td class="text-right pr-5 font-weight-bold" colspan="4"> Gross Total</td>
+                    <td class="font-weight-bold"> {{config('app.currency')}} {{ $order->total ?? '0' }} </td>
+                </tr>
+                <tr>
+                    <td class="text-right pr-5 font-weight-bold" colspan="4"> Discount</td>
+                    <td class="font-weight-bold"> {{config('app.currency')}} {{ $order->discount ?? '0' }} </td>
+                </tr>
+                <tr>
+                    <td class="text-right pr-5 font-weight-bold" colspan="4"> Deliver Charges</td>
+                    <td class="font-weight-bold"> {{config('app.currency')}} {{ $order->delivery_charges ?? '0'}} </td>
+                </tr>
+                <tr>
+                    <td class="text-right pr-5 font-weight-bold" colspan="4"> Net Total</td>
+                    <td class="font-weight-bold"> {{config('app.currency')}} {{ $order->delivery_charges + $order->total - $order->discount }} </td>
+                </tr>
             </tbody>
         </table>
         

@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Customer Name</th>
                 <th>Phone</th>
                 <th>Address</th>
                 <th>Details</th>
@@ -21,7 +22,8 @@
         <tbody>
             @foreach ($orders as $order)
             <tr>
-                <td>{{ $order->id }}</td>
+            <td>{{$order->id}}</td>
+            <td>{{ $order->user->name}}</td>
                 <td>{{ $order->phone }}</td>
                 <td>{{ $order->address}}</td>
                 <td>

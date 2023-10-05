@@ -27,7 +27,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
-
     public function isAdmin()
 {
     return $this->usertype === 1;
