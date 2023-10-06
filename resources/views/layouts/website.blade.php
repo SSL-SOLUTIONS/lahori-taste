@@ -90,7 +90,6 @@
       border-color: #337ab7;
       cursor: default;
     }
-
     /* Style the disabled pagination link */
     .pagination .disabled span,
     .pagination .disabled a,
@@ -101,10 +100,7 @@
       cursor: not-allowed;
     }
   </style>
-
-
 </head>
-
 <body class="sub_page">
   <div class="hero_area">
     <div class="bg-box">
@@ -123,20 +119,21 @@
             <span class=""> </span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  mx-auto ">
-              <li class="nav-item">
-                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('main') }}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{ request()->is('menus') ? 'active' : '' }}" href="{{ route('menus') }}">Menu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{ request()->is('orders') ? 'active' : '' }}" href="{{ route('orders') }}">My Orders</a>
-              </li>
-            </ul>
+          <ul class="navbar-nav mx-auto">
+    <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
+        <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
+        <a class="nav-link" href="{{ route('menus') }}">Menu</a>
+    </li>
+    <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif">
+        <a class="nav-link" href="{{ route('about') }}">About</a>
+    </li>
+    <li class="nav-item @if(Route::currentRouteName() == 'orders') active @endif">
+        <a class="nav-link" href="{{ route('orders') }}">My Orders</a>
+    </li>
+</ul>
+
             <div class="user_option">
             <div class="dropdown">
                   <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -207,7 +204,6 @@
                   <g>
                   </g>
                 </svg>
-                <h6 style="color: white;">({{ $cartCount }})</h6> 
               </a>
               <a href="{{route('menus')}}" class="order_online">
                 Order Online
@@ -221,10 +217,6 @@
     <!-- end header section -->
   </div>
   @yield('content')
-
-
-
-
   <!-- footer section -->
   <footer class="footer_section">
     <div class="container">

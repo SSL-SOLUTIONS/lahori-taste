@@ -27,8 +27,7 @@ class StripePaymentController extends Controller
         $totalPrice = $this->total();
         return view('stripe', get_defined_vars());
     }
-
-    /**
+ /**
      * success response method.
      *
      * @return \Illuminate\Http\Response

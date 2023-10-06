@@ -39,8 +39,8 @@
                     <td>{{ $order->address}} </td>
                     <td>{{config('app.currency')}} {{ $order->discount ?? '0' }}</td>
                     <td>{{config('app.currency')}} {{ $order->delivery_charges ?? '0'}}</td>
-                    <td>{{config('app.currency')}} {{ $order->delivery_charges + $order->total - $order->discount }}</td>
-                    <td>{{ $order->order_status}}</td>
+                    <td>{{ config('app.currency') }} {{ (float)$order->delivery_charges + (float)$order->total - (float)$order->discount }}</td>
+                    <td>{{$order->order_status}}</td>
                     <td>{{ $order->created_at->format('M d, Y')}}</td>
                 </tr>
                 @endforeach

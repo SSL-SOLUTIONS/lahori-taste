@@ -36,7 +36,7 @@
                     <td>{{ $cartItem['name'] }}</td>
                     <td><img src="{{ asset('img/products/' . $cartItem['image']) }}" class="img-thumbnail" style="max-width: 50px;"></td>
                     <td> {{ $cartItem['quantity']}}</td>
-                    <td> £{{ $cartItem['price']}}</td>
+            <td> £{{ $cartItem['price']}}</td>
                     <td class="align-middle">
                         <a href="{{ route('remove_cart', $productId) }}" class="btn btn-sm btn-danger">
                             <i class="fa fa-times"></i>

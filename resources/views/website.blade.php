@@ -87,20 +87,21 @@
               <span class=""> </span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav  mx-auto ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{{route('main')}}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('menus')}}">Menu</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('about')}}">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('orders')}}">My Orders</a>
-                </li>
-              </ul>
+            <ul class="navbar-nav mx-auto">
+            <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
+            <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+       <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
+        <a class="nav-link" href="{{ route('menus') }}">Menu</a>
+        </li>
+      <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif">
+        <a class="nav-link" href="{{ route('about') }}">About</a>
+          </li>
+        <li class="nav-item @if(Route::currentRouteName() == 'orders') active @endif">
+         <a class="nav-link" href="{{ route('orders') }}">My Orders</a>
+     </li>
+    </ul>
+
               <div class="user_option">
                 <div class="dropdown">
                   <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -172,7 +173,6 @@
                     </g>
                   </svg>
                 </a>
-                <h6 style="color: white;" >({{ $cartCount }})</h6> 
                 <a href="{{route('menus')}}" class="order_online">
                   Order Online
                 </a>
@@ -314,7 +314,7 @@
                       <form id="addToCartForm" class="col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
                         @csrf
                         <input class="quantity-input" id="inputQuantity" type="number" name="quantity" min="1" value="1">
-                        <a href="#" id="addToCartButton">
+                        <a href="" id="addToCartButton">
                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                             <g>
                               <g>
@@ -370,7 +370,6 @@
                         </a>
                       </form>
                     </div>
-
                   </div>
                 </div>
               </div>

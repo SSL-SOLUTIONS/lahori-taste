@@ -18,7 +18,6 @@ class WebsiteController extends Controller
     public function website(Request $request)
 
     {
-        $cartCount = count(session('cart'));
         $categoryId = $request->input('category');
         $categories = Category::paginate(7);
         if ($categoryId) {
@@ -26,34 +25,34 @@ class WebsiteController extends Controller
         } else {
             $products = Product::all();
         }
-        return view('website', compact('products', 'categories','cartCount'));
+        return view('website', compact('products', 'categories',));
     }
 
     public function main(Request $request)
     {
-        // Get the 'category' parameter from the request
         $categoryId = $request->input('category');
-
-        // Retrieve all categories
         $categories = Category::paginate(7);
-        $cartCount = count(session('cart'));
-
-        // Retrieve products filtered by category if a category is specified
         if ($categoryId) {
             $products = Product::where('category_id', $categoryId)->get();
         } else {
             $products = Product::all();
         }
-        return view('website', compact('products', 'categories','cartCount'));
+        return view('website', compact('products', 'categories'));
     }
 
     public function menus($category = null)
     {
-        
-            
+        // Initialize the products variable
+        $products = null;
+
+        if ($category) {
+            $products = Product::where('category_id', $category)->paginate(9);
+        } else {
+            // If no category is provided, fetch all products with pagination
             $products = Product::all();
-        $cartCount = count(session('cart'));
-        return view('website.menu', compact(['products', 'cartCount']));
+        }
+        // Pass the products to the view
+        return view('website.menu')->with('products', $products);
     }
 
     public function services()
@@ -61,8 +60,8 @@ class WebsiteController extends Controller
         return view('website.services');
     }
     public function about()
-    {      $cartCount = count(session('cart'));
-        return view('website.about', compact('cartCount'));
+    {
+        return view('website.about');
     }
     public function contact()
     {
@@ -73,15 +72,14 @@ class WebsiteController extends Controller
         $cart = $request->session()->get('cart', []);
         $orders = session()->get('orders', []);
         $products = Product::all();
-        $cartCount = count(session('cart'));
-        return view('website.cart', compact('cart', 'products', 'orders','cartCount'));
+        return view('website.cart', compact('cart', 'products', 'orders'));
     }
 
     public function orders()
     {
         // Retrieve cart data from session
         $orders = Order::whereUserId(auth()->id())->get();
-        $cartCount = count(session('cart'));
+
         return view('website.orders.index', get_defined_vars());
     }
     public function orderDetails($id){

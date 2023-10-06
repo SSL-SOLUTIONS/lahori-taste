@@ -18,7 +18,6 @@ class OrderController extends Controller
         return view('orders.checkout');
     }
 
-
     public function order()
     {
         $orders = Order::where('user_id', auth()->id())->get();
@@ -32,5 +31,13 @@ class OrderController extends Controller
             return abort(404);
         }
         return view('orders.show', compact('orderdetails'));
+    }
+
+    public function delivered($id)
+    {
+        $order = Order::find($id);
+        $order->order_status= "delivered";
+        $order->save();
+        return redirect()->back();
     }
 }

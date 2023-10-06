@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                     <td class="text-right pr-5 font-weight-bold" colspan="4"> Net Total</td>
-                    <td class="font-weight-bold"> {{config('app.currency')}} {{ $order->delivery_charges + $order->total - $order->discount }} </td>
+                    <td class="font-weight-bold"> {{config('app.currency')}} {{(float) $order->delivery_charges + (float) $order->total - (float)$order->discount }} </td>
                 </tr>
             </tbody>
         </table>

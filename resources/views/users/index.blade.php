@@ -1,5 +1,4 @@
 @extends('admin')
-
 @section('content')
 <div class="container">
     @if (session('success'))
@@ -28,9 +27,7 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->phone }}</td>
                 <td>{{ $user->address}}</td>
-     
                 <td>
-
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
                         @csrf

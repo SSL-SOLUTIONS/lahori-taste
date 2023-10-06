@@ -36,6 +36,7 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
     Route::get('/panel', [AdminController::class, 'panel'])->name('panel');
     Route::resource('/users', UserController::class);
     Route::get('/order', [OrderController::class, 'order'])->name('order');
+    Route::get('/delivered/{id}',[OrderController::class,'delivered']);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::get('/orderdetails/{id}',[OrderController::class,'orderdetails'])->name('orderdetails');
