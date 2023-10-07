@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
@@ -36,11 +37,10 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
     Route::get('/panel', [AdminController::class, 'panel'])->name('panel');
     Route::resource('/users', UserController::class);
     Route::get('/order', [OrderController::class, 'order'])->name('order');
-    Route::get('/delivered/{id}',[OrderController::class,'delivered']);
+    Route::get('/delivered/{id}', [OrderController::class, 'delivered']);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
-    Route::get('/orderdetails/{id}',[OrderController::class,'orderdetails'])->name('orderdetails');
-
+    Route::get('/orderdetails/{id}', [OrderController::class, 'orderdetails'])->name('orderdetails');
 });
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
@@ -48,16 +48,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
     // Route for viewing order history
     Route::get('/process-to-checkout', [OrderController::class, 'processToCheckout'])->name('processToCheckout');
-     Route::controller(StripePaymentController::class)->group(function () {
+    Route::controller(StripePaymentController::class)->group(function () {
         Route::post('stripe-view', 'stripe')->name('stripe.view');
         Route::post('stripe-store', 'stripePost')->name('stripe.post');
-    });
 
+        // route for user profile
+    });
 
     // user routes 
     Route::get('/orders', [WebsiteController::class, 'orders'])->name('orders');
     Route::get('/order-details/{id?}', [WebsiteController::class, 'orderDetails'])->name('orders.details');
-
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

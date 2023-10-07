@@ -15,15 +15,17 @@
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
  
   <link rel="shortcut icon" href="" />
+
+  
 </head>
   <body>
-  <div class="container-scroller">
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div  class="container-scroller">
+    <nav  class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex fixed-top">
         <img src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="" class="img-fluid rounded-circle mt-6" >
       </div>
         <br>
-        <ul class="nav">
+        <ul  class="nav">
           <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('users')}}">
             <span class="menu-icon">
@@ -64,7 +66,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href=""><img src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -114,8 +116,6 @@
                 </a>
               </div>
             </li>
-
-
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
               <span class="mdi mdi-format-line-spacing"></span>
@@ -123,8 +123,8 @@
           </div>
         </nav>
         <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
+        <div  class="main-panel">
+          <div  class="content-wrapper">
            
            @yield('content')
           </div>

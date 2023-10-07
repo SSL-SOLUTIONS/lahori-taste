@@ -14,10 +14,8 @@
   <link rel="shortcut icon" href="{{asset('images/Favicon.png')}}" type="">
 
   <title>Lahori Taste</title>
-
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{{asset('website/css/bootstrap.css')}}" />
-
   <!--owl slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <!-- nice select  -->
@@ -27,79 +25,10 @@
   <!-- Custom styles for this template -->
   <link href="{{asset('website/css/style.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- responsive style -->
   <link href="{{asset('website/css/responsive.css')}}" rel="stylesheet" />
   <!-- stripe links -->
-  <style>
-    /* Center the pagination and add some spacing */
-    .text-center {
-      text-align: center;
-    }
-
-    .pagination-container {
-      display: inline-block;
-      margin-top: 20px;
-      /* Adjust the margin-top as needed for spacing */
-    }
-
-    /* Style the pagination links */
-    .pagination {
-      display: inline-block;
-      padding-left: 0;
-      margin: 0;
-      border-radius: 4px;
-    }
-
-    .pagination li {
-      display: inline;
-    }
-
-    .pagination li a,
-    .pagination li span {
-      position: relative;
-      float: left;
-      padding: 6px 12px;
-      margin-left: -1px;
-      line-height: 1.42857143;
-      text-decoration: none;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      color: #337ab7;
-    }
-
-    .pagination li:first-child a,
-    .pagination li:first-child span {
-      margin-left: 0;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    .pagination li:last-child a,
-    .pagination li:last-child span {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-
-    /* Style the active pagination link */
-    .pagination .active a,
-    .pagination .active span {
-      z-index: 2;
-      color: #fff;
-      background-color: #337ab7;
-      border-color: #337ab7;
-      cursor: default;
-    }
-    /* Style the disabled pagination link */
-    .pagination .disabled span,
-    .pagination .disabled a,
-    .pagination .disabled a:hover {
-      color: #777;
-      background-color: #fff;
-      border-color: #ddd;
-      cursor: not-allowed;
-    }
-  </style>
 </head>
 <body class="sub_page">
   <div class="hero_area">
@@ -119,38 +48,39 @@
             <span class=""> </span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto">
-    <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
-        <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
-        <a class="nav-link" href="{{ route('menus') }}">Menu</a>
-    </li>
-    <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif">
-        <a class="nav-link" href="{{ route('about') }}">About</a>
-    </li>
-    <li class="nav-item @if(Route::currentRouteName() == 'orders') active @endif">
-        <a class="nav-link" href="{{ route('orders') }}">My Orders</a>
-    </li>
-</ul>
-
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
+                <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
+                <a class="nav-link" href="{{ route('menus') }}">Menu</a>
+              </li>
+              <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif">
+                <a class="nav-link" href="{{ route('about') }}">About</a>
+              </li>
+              <li class="nav-item @if(Route::currentRouteName() == 'orders') active @endif">
+                <a class="nav-link" href="{{ route('orders') }}">My Orders</a>
+              </li>
+            </ul>
             <div class="user_option">
-            <div class="dropdown">
-                  <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="userIcon">
-                    @auth
-                    <button class="dropdown-item" href="">Profile</button>
-                    <form action="{{ route('logout') }}" method="POST">
-                      @csrf
-                      <button type="submit" class="dropdown-item">Logout</button>
-                    </form>
-                    @else
-                    <button class="dropdown-item" href="{{route('login')}}">Login</button>
-                    @endauth
-                  </div>
+              <div class="dropdown">
+                @auth
+                <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="userIcon">
+                <button class="dropdown-item" href="">Profile</button>
+                  <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                  </form>
                 </div>
+                @else
+                <a href="{{ route('login') }}" class="user_link">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                @endauth
+              </div>
               <a class="cart_link" href="{{route('cart')}}">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>

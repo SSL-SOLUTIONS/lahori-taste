@@ -8,7 +8,7 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <meta name="keywords" content=""/>
+  <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="">
@@ -32,43 +32,49 @@
 
   <title>Lahori Taste</title>
   <style>
-    .vertical-navbar {
-      display: inline-block;
-      padding: 20px;
-      border-radius: 20px;
-      margin-top: 80px;
-      height: 600px;
-      background-color: whitesmoke;
+    /* Style the dropdown button */
+    .user_link {
+      font-size: 20px;
+      color: #333;
+      text-decoration: none;
     }
 
-    .vertical-navbar ul {
-      list-style-type: none;
-      padding: 10px;
+    /* Style the dropdown menu container */
+    .dropdown-menu {
+      border: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      min-width: 100px;
     }
 
-    .vertical-navbar li {
-      margin: 10px 0;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      align-items: center;
+    /* Style the dropdown menu items */
+    .dropdown-item {
+      color: #333;
+      text-align: center;
+      padding: 5px 10px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s;
     }
 
-    .vertical-navbar li:hover {
-      background-color: #e3e3e3;
-      border-radius: 5px;
+    .dropdown-item:hover {
+      background-color: #f2f2f2;
     }
 
-    #inputQuantity {
-      max-width: 30%;
-      margin: 10px 55px 0 10px;
-      height: 20px;
-      background-color: #e3e3e3;
+    /* Style the logout button */
+    .dropdown-item.logout-button {
+      color: #ff3333;
+    }
+
+    /* Style the user icon */
+    .fa-user {
+      font-size: 24px;
     }
   </style>
 </head>
 
 <body>
-
   <!-- header section  -->
   <div class="container-fluid p-0">
     <div class="hero_area">
@@ -87,37 +93,39 @@
               <span class=""> </span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto">
-            <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
-            <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
-            </li>
-       <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
-        <a class="nav-link" href="{{ route('menus') }}">Menu</a>
-        </li>
-      <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif">
-        <a class="nav-link" href="{{ route('about') }}">About</a>
-          </li>
-        <li class="nav-item @if(Route::currentRouteName() == 'orders') active @endif">
-         <a class="nav-link" href="{{ route('orders') }}">My Orders</a>
-     </li>
-    </ul>
+              <ul class="navbar-nav mx-auto">
+                <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
+                  <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
+                  <a class="nav-link" href="{{ route('menus') }}">Menu</a>
+                </li>
+                <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif">
+                  <a class="nav-link" href="{{ route('about') }}">About</a>
+                </li>
+                <li class="nav-item @if(Route::currentRouteName() == 'orders') active @endif">
+                  <a class="nav-link" href="{{ route('orders') }}">My Orders</a>
+                </li>
+              </ul>
 
               <div class="user_option">
                 <div class="dropdown">
+                  @auth
                   <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user" aria-hidden="true"></i>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="userIcon">
-                    @auth
-                    <button class="dropdown-item" href="">Profile</button>
+                   <button class="dropdown-item" href="">Profile</button>
                     <form action="{{ route('logout') }}" method="POST">
                       @csrf
                       <button type="submit" class="dropdown-item">Logout</button>
                     </form>
-                    @else
-                    <a class="dropdown-item" href="{{route('login')}}">Login</a>
-                    @endauth
                   </div>
+                  @else
+                  <a href="{{ route('login') }}" class="user_link">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </a>
+                  @endauth
                 </div>
                 <a class="cart_link" href="{{route('cart')}}">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
@@ -240,7 +248,6 @@
                       </h1>
                       <p>
                         "Discover the flavorful delights of 'Taste of Lahore,' where culinary traditions come to life. Our menu is a celebration of Lahore's rich gastronomic heritage, offering an exquisite array of mouthwatering dishes that will transport you to the heart of this culinary paradise. From aromatic biryanis to succulent kebabs and sweet delights, every bite is a tribute to the authentic taste of Lahore. Indulge in the true essence of Lahori cuisine, where every dish tells a story of tradition, culture, and unparalleled taste. Come savor the Taste of Lahore experience like never before!"
-
                       </p>
                       <div class="btn-box">
                         <a href="{{route('menus')}}" class="btn1">
@@ -271,19 +278,21 @@
   <!-- food section -->
   <section class="food_section layout_padding-bottom">
     <div class="container-fluid">
-      <div class="row pt-4 m-1">
-        <div class="col-lg-2 col-md-3 col-sm-3 p-3 ">
-          <div style="position: sticky; top: 30px;" class="vertical-navbar mt-5">
+      <div class="row pt-0 m-1">
+        <div class="col-lg-2 col-md-3 col-sm-3 p-3">
+          <!-- Keep the vertical navbar sticky -->
+          <div style="position: sticky; top: 30px;" class="vertical-navbar mt-5" style="height: 300px; overflow-y: auto;">
             <ul class="filters_menu" id="filters_menu">
               <li data-filter="*" onclick="filterProducts('all');" class="active">All</li>
               @foreach ($categories as $category)
-              <li data-filter=".{{ $category->title}}" onclick="filterProducts('{{ $category->id }}')">
+              <li data-filter=".{{ $category->title }}" onclick="filterProducts('{{ $category->id }}')">
                 {{ $category->title }}
               </li>
               @endforeach
             </ul>
           </div>
         </div>
+
         <div class="col-lg-10 col-md-9 col-sm-9 p-0">
           <div class="heading_container heading_center">
             <h2>Our Menu</h2>
@@ -299,22 +308,26 @@
           <div class="filters-content" id="products-container">
             <div class="row">
               @foreach ($products as $product)
-              <div class="col-lg-4 col-sm-6 all category-{{ $product->category?->id }}">
+              <div class="col-lg-4 col-sm-6 p-0 all category-{{ $product->category?->id }}">
                 <div class="box m-3 p-0">
                   <div class="img-box">
+                    <!-- Ensure the image stays responsive -->
                     <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
                   </div>
                   <div class="detail-box">
-                  <h5> {{ Str::limit($product->name, $limit =15, $end = '...')}}</h5>
-                    <p> {{ Str::limit($product->description, $limit = 30, $end = '...')}}</p>
+                    <b>{{$product->name}}</b>
+                    <!-- Maintain consistent text style and size -->
+                    <p> {{ Str::limit($product->description, $limit = 20, $end = '...')}}</p>
                     <div class="options">
                       <h6 class="text-start">
-                        <h5 style="margin-top: 7px;">£{{ $product->price }}</h5>
+                        <!-- Maintain consistent price style -->
+                        <b style="margin-top: 7px;">£{{ $product->price }}</b>
                       </h6>
-                      <form id="addToCartForm" class="col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                      <form id="addToCartForm" class="col-lg-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
                         @csrf
                         <input class="quantity-input" id="inputQuantity" type="number" name="quantity" min="1" value="1">
-                        <a href="" id="addToCartButton">
+                        <a style="max-width: 20%;" href="" id="addToCartButton">
+                          <!-- Keep the cart symbol consistent in style and size -->
                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                             <g>
                               <g>
@@ -380,6 +393,7 @@
       </div>
     </div>
   </section>
+  <div id="scroll-to-top">Top</div>
   <!-- end food section -->
 
   <!-- footer section -->
@@ -508,6 +522,28 @@
       } else {
         alert('Please enter a valid quantity.');
       }
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function() {
+      // Show the scroll-to-top circle when user scrolls down
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll-to-top').fadeIn();
+        } else {
+          $('#scroll-to-top').fadeOut();
+        }
+      });
+
+      // Scroll to the top when the circle is clicked
+      $('#scroll-to-top').click(function() {
+        $('html, body').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
     });
   </script>
 

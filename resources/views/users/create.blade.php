@@ -14,30 +14,46 @@
     <h2>Create User</h2>
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
-        <div class="form-group col-6">
-            <label for="name">Name</label>
-            <input type="text" name="name" class="form-control" required>
+        <div class="form-group row">
+            <label for="name" class="col-md-2 col-form-label">Name</label>
+            <div class="col-md-6">
+                <input type="text" name="name" class="form-control" required>
+            </div>
         </div>
 
-        <div class="form-group col-6">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" required>
+        <div class="form-group row">
+            <label for="email" class="col-md-2 col-form-label">Email</label>
+            <div class="col-md-6">
+                <input type="email" name="email" class="form-control" required>
+            </div>
         </div>
 
-        <div class="form-group col-6">
-            <label for="phone">Phone</label>
-            <input type="phone" name="phone" class="form-control" required>
+        <div class="form-group row">
+            <label for="phone" class="col-md-2 col-form-label">Phone</label>
+            <div class="col-md-6">
+                <input type="phone" name="phone" class="form-control" required>
+            </div>
         </div>
-        <div class="form-group col-6">
-            <label for="address">Address</label>
-            <input type="address" name="address" class="form-control" required>
+
+        <div class="form-group row">
+            <label for="address" class="col-md-2 col-form-label">Address</label>
+            <div class="col-md-6">
+                <input type="address" name="address" class="form-control" required>
+            </div>
         </div>
-       
-        <div class="form-group col-6">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" required>
+
+        <div class="form-group row">
+            <label for="password" class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-6">
+                <input type="password" name="password" class="form-control" required>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+
+        <div class="form-group row">
+            <div class="col-md-6 offset-md-2">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
     </form>
 </div>
 @endsection

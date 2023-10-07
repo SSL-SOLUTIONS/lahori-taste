@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="filters-content">
-                    <div class="row p-5">
+                    <div class="row">
                         @foreach($products as $product) <!-- Loop through products -->
                         <div class="col-lg-4 col-md-6 col-sm-12 all pizza">
                             <div class="box">
@@ -28,10 +28,10 @@
                                         <h5>
                                             £{{ $product->price }}
                                         </h5>
-                                        <form id="addToCartForm" class="  col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
+                                        <form id="addToCartForm" class="col-lg-12 col-md-12 d-flex justify-content-center" action="{{ route('cart.add',['product' => $product]) }}" method="POST">
                                             @csrf
                                             <input class="quantity-input" id="inputQuantity" type="number" name="quantity" min="1" value="1" style="max-width: 30%;margin: 10px 55px 0 10px;height: 20px;background-color: #e3e3e3;">
-                                            <a id="addToCartButton" href="">
+                                            <a style="max-width: 20%;" id="addToCartButton" href="">
                                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                                     <g>
                                                         <g>
@@ -92,10 +92,12 @@
                         </div>
                         @endforeach
                     </div>
+                    <br><br>
                 </div>
             </div>
         </div>
     </div>
+    <div id="scroll-to-top">Top</div>
 </section>
 <!-- end food section -->
 <script>
@@ -109,5 +111,27 @@
             alert('Please enter a valid quantity.');
         }
     });
+</script>
+
+
+
+
+<script>
+  $(document).ready(function() {
+    // Show the scroll-to-top circle when user scrolls down
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        $('#scroll-to-top').fadeIn();
+      } else {
+        $('#scroll-to-top').fadeOut();
+      }
+    });
+
+    // Scroll to the top when the circle is clicked
+    $('#scroll-to-top').click(function() {
+      $('html, body').animate({ scrollTop: 0 }, 800);
+      return false;
+    });
+  });
 </script>
 @endsection

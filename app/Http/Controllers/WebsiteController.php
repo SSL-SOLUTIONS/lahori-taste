@@ -8,6 +8,7 @@ use App\Models\MenuItem;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Prompts\Prompt;
@@ -19,24 +20,26 @@ class WebsiteController extends Controller
 
     {
         $categoryId = $request->input('category');
-        $categories = Category::paginate(7);
+        $categories = Category::all();
         if ($categoryId) {
             $products = Product::where('category_id', $categoryId)->get();
         } else {
             $products = Product::all();
         }
-        return view('website', compact('products', 'categories',));
+        return view('website', compact('products', 'categories'));
     }
 
     public function main(Request $request)
     {
+
         $categoryId = $request->input('category');
-        $categories = Category::paginate(7);
+        $categories = Category::all();
         if ($categoryId) {
             $products = Product::where('category_id', $categoryId)->get();
         } else {
             $products = Product::all();
         }
+       
         return view('website', compact('products', 'categories'));
     }
 
