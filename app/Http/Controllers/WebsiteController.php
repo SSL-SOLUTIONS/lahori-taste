@@ -26,7 +26,8 @@ class WebsiteController extends Controller
         } else {
             $products = Product::all();
         }
-        return view('website', compact('products', 'categories'));
+        $cart = (array)$request->session()->get('cart', []);
+        return view('website', compact('products', 'categories','cart'));
     }
 
     public function main(Request $request)
@@ -39,32 +40,28 @@ class WebsiteController extends Controller
         } else {
             $products = Product::all();
         }
-       
-        return view('website', compact('products', 'categories'));
+        $cart = (array)$request->session()->get('cart', []);
+        return view('website', compact('products', 'categories','cart'));
     }
 
-    public function menus($category = null)
-    {
-        // Initialize the products variable
-        $products = null;
+    public function menus(Request $request)
+{
+    $cart = (array)$request->session()->get('cart', []);
+    $products = Product::all();
 
-        if ($category) {
-            $products = Product::where('category_id', $category)->paginate(9);
-        } else {
-            // If no category is provided, fetch all products with pagination
-            $products = Product::all();
-        }
-        // Pass the products to the view
-        return view('website.menu')->with('products', $products);
-    }
+    return view('website.menu', compact('cart', 'products'));
+}
+
+    
 
     public function services()
     {
         return view('website.services');
     }
-    public function about()
+    public function about(Request $request)
     {
-        return view('website.about');
+        $cart = (array)$request->session()->get('cart', []);
+        return view('website.about', compact('cart'));
     }
     public function contact()
     {
@@ -78,16 +75,18 @@ class WebsiteController extends Controller
         return view('website.cart', compact('cart', 'products', 'orders'));
     }
 
-    public function orders()
+    public function orders(Request $request)
     {
-        // Retrieve cart data from session
+        
         $orders = Order::whereUserId(auth()->id())->get();
-
+        $cart = (array)$request->session()->get('cart', []);
         return view('website.orders.index', get_defined_vars());
+        
     }
-    public function orderDetails($id){
+    public function orderDetails( Request $request,$id){
         $order = Order::whereUserId(auth()->id())->findorfail($id);
-        return view('website.orders.show', compact('order'));
+        $cart = (array)$request->session()->get('cart', []);
+        return view('website.orders.show', compact('order','cart'));
     }
 
 }

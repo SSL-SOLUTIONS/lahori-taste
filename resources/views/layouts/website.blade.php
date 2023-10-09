@@ -30,6 +30,7 @@
   <link href="{{asset('website/css/responsive.css')}}" rel="stylesheet" />
   <!-- stripe links -->
 </head>
+
 <body class="sub_page">
   <div class="hero_area">
     <div class="bg-box">
@@ -63,24 +64,7 @@
               </li>
             </ul>
             <div class="user_option">
-              <div class="dropdown">
-                @auth
-                <a href="#" class="user_link" id="userIcon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="userIcon">
-                <button class="dropdown-item" href="">Profile</button>
-                  <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="dropdown-item">Logout</button>
-                  </form>
-                </div>
-                @else
-                <a href="{{ route('login') }}" class="user_link">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                </a>
-                @endauth
-              </div>
+
               <a class="cart_link" href="{{route('cart')}}">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
@@ -134,10 +118,38 @@
                   <g>
                   </g>
                 </svg>
+                @php
+                $request = request();
+                $cart = (array)$request->session()->get('cart', []);
+                @endphp
+                <span style="color: white;">({{ isset($cart) ? count($cart) : 0 }})</span>
               </a>
-              <a href="{{route('menus')}}" class="order_online">
-                Order Online
+              @auth
+              @php
+              $fullName = Auth::user()->name;
+              $firstName = strtok($fullName, ' ');
+              @endphp
+              <a href="{{ route('profile.show', ['profile' => Auth::id()]) }}" class="user_link">
+                <i class="fa fa-user" aria-hidden="true"></i> {{ $firstName }}
               </a>
+              <div class="dropdown-menu" aria-labelledby="userIcon">
+                <a class="dropdown-item" href="{{ route('profile.show', ['profile' => Auth::id()]) }}">Profile</a>
+                <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+              </div>
+              @else
+              <a href="{{ route('login') }}" class="user_link">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Login
+              </a>
+              @endauth
+
+
+
+
+
             </div>
           </div>
         </nav>

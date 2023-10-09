@@ -1060,12 +1060,7 @@ a:focus {
   border-radius: 5px;
 }
 
-#inputQuantity {
-  max-width: 30%;
-  margin: 10px 55px 0 10px;
-  height: 20px;
-  background-color: #e3e3e3;
-}
+
 
  /* Style the dropdown button */
  .user_link {

@@ -5,10 +5,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
@@ -44,7 +44,7 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
 });
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
-    Route::post('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');
+    Route::get('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');
     Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
     // Route for viewing order history
     Route::get('/process-to-checkout', [OrderController::class, 'processToCheckout'])->name('processToCheckout');
@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('stripe-store', 'stripePost')->name('stripe.post');
 
         // route for user profile
+        Route::resource('profile', ProfileController::class);
     });
 
     // user routes 

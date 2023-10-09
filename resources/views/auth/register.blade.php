@@ -1,16 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+     body {
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        background-image: url('{{ asset('images/image-1.jpg') }}');
+        background-size: cover;
+        filter: blur(4px); 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div style="color: white;" class="bg-warning card-header"><h3>{{ __('Register') }}</h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -92,7 +110,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-warning">
                                     {{ __('Register') }}
                                 </button>
                             </div>
