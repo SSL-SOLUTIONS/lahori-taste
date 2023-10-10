@@ -1034,11 +1034,10 @@ a:focus {
 .vertical-navbar {
   /* display: inline-block; */
   padding: 20px;
-  border-radius: 20px;
+
   margin-top: 80px;
   height: 800px;
-  max-height: 400px;
-  /* Adjust the max height as needed */
+  max-height: 500px;
   overflow-y: auto;
   background-color: whitesmoke;
 }
@@ -1059,16 +1058,12 @@ a:focus {
   background-color: #e3e3e3;
   border-radius: 5px;
 }
-
-
-
  /* Style the dropdown button */
  .user_link {
   font-size: 20px;
   color: #333;
   text-decoration: none;
 }
-
 /* Style the dropdown menu container */
 .dropdown-menu {
   border: none;
@@ -1077,7 +1072,6 @@ a:focus {
   border-radius: 8px;
   min-width: 100px;
 }
-
 /* Style the dropdown menu items */
 .dropdown-item {
   color: #333;
@@ -1101,3 +1095,24 @@ a:focus {
 .fa-user {
   font-size: 24px;
 }
+
+.profile_image{
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  border-radius: 50%; /* Make the image round (for a circular user avatar) */
+  margin-right: 10px; /* Add margin to separate from user's name */
+  border-radius: 60px;
+}
+
+.header_section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Adjust the z-index as needed */
+  background-image: url('/images/navbar.JPG');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+

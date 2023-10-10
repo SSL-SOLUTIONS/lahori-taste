@@ -12,9 +12,24 @@
     </div>
     @endif
     <h2>Edit User</h2>
-    <form action="{{ route('users.update', $user->id) }}" method="POST">
+
+    @if ($user->image)
+        <img src="{{ asset('img/users/' . $user->image) }}" alt="Profile Image" width="100">
+    @else
+        No image
+    @endif
+
+    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
+        <div class="form-group row">
+            <label for="image" class="col-md-2 col-form-label">Profile Image</label>
+            <div class="col-md-6">
+                <input type="file" name="image" class="form-control">
+            </div>
+        </div>
+
         <div class="form-group row">
             <label for="name" class="col-md-2 col-form-label">Name</label>
             <div class="col-md-6">

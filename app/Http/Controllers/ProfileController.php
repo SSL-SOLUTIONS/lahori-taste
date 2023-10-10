@@ -44,7 +44,8 @@ class ProfileController extends Controller
      */
     public function edit(string $id)
     {
-    return view('website.profile.edit');
+        $user = User::find($id);
+    return view('website.profile.edit', compact('user'));
 
     }
 
@@ -53,9 +54,29 @@ class ProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        // Fetch the user data based on the $id parameter
+        $user = User::find($id);
+    
+        // Check if the user exists
+        if (!$user) {
+            // Handle the case where the user is not found, e.g., redirect or show an error message
+        }
+    
+        // Validate the form data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id, 
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+        ]);
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'];
+        $user->address = $validatedData['address'];
+        $user->save();
+        return redirect()->route('profile.show', ['profile' => $user->id])->with('success', 'Profile updated successfully');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */

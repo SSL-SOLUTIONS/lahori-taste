@@ -1,5 +1,6 @@
 @extends('layouts.website')
 @section('content')
+<br><br><br>
 
 @if(session()->has('success'))
 <div class="alert alert-success">
@@ -55,29 +56,29 @@
             </tbody>
         </table>
     </div>
-
     @php
     $totalPrice = 0;
     foreach($cart as $cartItem) {
-        $totalPrice += $cartItem['price'];
+    $totalPrice += $cartItem['price'];
     }
     @endphp
 
     <div class="text-left">
         <p><strong>Total Price: £{{ number_format($totalPrice, 2) }}</strong></p>
     </div>
-
     @if ($totalPrice > 0)
     <div class="text-center">
         <a class="btn btn-warning" href="{{ route('processToCheckout') }}">Process to Checkout</a>
     </div>
     @endif
 </div>
-
+<br>
 <script>
     function updateQuantity(itemId, action) {
         let quantityElement = document.getElementById('quantity_' + itemId);
+        let priceElement = document.getElementById('price_' + itemId);
         let currentQuantity = parseInt(quantityElement.innerText);
+        let pricePerItem = parseFloat(priceElement.innerText.replace('$', ''));
 
         if (action === 'increment') {
             currentQuantity += 1;
@@ -86,8 +87,10 @@
         }
 
         quantityElement.innerText = currentQuantity;
+        priceElement.innerText = '$' + (currentQuantity * pricePerItem).toFixed(2); // Update the price based on the new quantity
         // You may also want to update the cart data in the session here
     }
 </script>
+
 
 @endsection

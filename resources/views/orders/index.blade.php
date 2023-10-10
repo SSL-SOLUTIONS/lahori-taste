@@ -1,6 +1,7 @@
 @extends('admin')
 
 @section('content')
+
 <div class="container">
     @if (session('success'))
     <div class="alert alert-success">

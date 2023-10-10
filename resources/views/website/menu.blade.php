@@ -1,11 +1,11 @@
 @extends('layouts.website')
 @section('content')
+<br><br><br>
+
 <section class="food_section layout_padding p-0">
     <div class="container-fluid pt-5">
         <div class="row justify-content-center">
             <h2>Our Menu</h2>
-            
-           
         </div>
         @if(session()->has('message'))
             <div class="alert alert-success alert-dismissible fade show">

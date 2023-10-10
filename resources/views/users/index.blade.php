@@ -17,6 +17,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
+                    <th>Profile Image</th> <!-- Add a new column for profile images -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -28,6 +29,13 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->address}}</td>
+                    <td>
+                        @if ($user->image)
+                            <img src="{{ asset('/img/users/' . $user->image) }}" alt="Profile Image" width="100">
+                        @else
+                            No image
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">

@@ -75,14 +75,10 @@
 
 <body>
   <!-- header section  -->
-  <div class="container-fluid p-0">
-    <div class="hero_area">
-      <div class="bg-box">
-        <img src="{{asset('images/image-1.jpg')}}" alt="">
-      </div>
-      <header class="header_section">
+
+  <header class="header_section">
         <div class="container">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
             <a class="navbar-brand" href="{{route('main')}}">
               <span>
                 <img class="img-fluid" style="height: 40px;" src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="">
@@ -94,7 +90,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item @if(Route::currentRouteName() == 'main') active @endif">
-                  <a class="nav-link" href="{{ route('main') }}">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{{ route('main') }}">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item @if(Route::currentRouteName() == 'menus') active @endif">
                   <a class="nav-link" href="{{ route('menus') }}">Menu</a>
@@ -160,6 +156,7 @@
                     <g>
                     </g>
                   </svg>
+
                   @php
                   $request = request();
                   $cart = (array)$request->session()->get('cart', []);
@@ -171,9 +168,18 @@
                 $fullName = Auth::user()->name;
                 $firstName = strtok($fullName, ' ');
                 @endphp
+
+                @if (Auth::user()->image)
+                <a href="{{ route('profile.show', ['profile' => Auth::id()]) }}" class="user_link">
+                  <img class="profile_image" src="{{ asset('/img/users/' . Auth::user()->image)}}">
+                  {{ $firstName }}
+                </a>
+                @else
                 <a href="{{ route('profile.show', ['profile' => Auth::id()]) }}" class="user_link">
                   <i class="fa fa-user" aria-hidden="true"></i> {{ $firstName }}
                 </a>
+                @endif
+
                 <div class="dropdown-menu" aria-labelledby="userIcon">
                   <a class="dropdown-item" href="{{ route('profile.show', ['profile' => Auth::id()]) }}">Profile</a>
                   <form action="{{ route('logout') }}" method="POST">
@@ -183,81 +189,58 @@
                 </div>
                 @else
                 <a href="{{ route('login') }}" class="user_link">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  Login
+                  <i class="fa fa-user" aria-hidden="true"></i> Login
                 </a>
                 @endauth
-
 
               </div>
             </div>
           </nav>
         </div>
       </header>
-      <!-- end header section -->
+
+
+
+
+  <div  class="container-fluid p-0">
+    <div class="hero_area">
+      <div class="bg-box">
+        <img src="{{asset('images/image-1.jpg')}}" alt="">
+      </div>
+     
       <!-- slider section -->
-      <section class="slider_section ">
+      <section class="slider_section">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="container ">
+            @foreach ($categories as $key => $category)
+            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+              <div class="container">
                 <div class="row">
-                  <div class="col-md-7 col-lg-6 ">
+                  <div class="col-md-7 col-lg-6">
                     <div class="detail-box">
                       <h1>
-                        Lahori Taste
-                      </h1>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item ">
-              <div class="container ">
-                <div class="row">
-                  <div class="col-md-7 col-lg-6 ">
-                    <div class="detail-box">
-                      <h1>
-                        Lahori Taste
+                        {{ $category->title }} <!-- Replace with the appropriate field from your database -->
                       </h1>
                       <p>
-
+                        {{ $category->description }} <!-- Replace with the appropriate field from your database -->
                       </p>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="container ">
-                <div class="row">
-                  <div class="col-md-7 col-lg-6 ">
-                    <div class="detail-box">
-                      <h1>
-                        Lahori Taste
-                      </h1>
-                      <p>
-                      </p>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
           <div class="container">
             <ol class="carousel-indicators">
-              <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-              <li data-target="#customCarousel1" data-slide-to="1"></li>
-              <li data-target="#customCarousel1" data-slide-to="2"></li>
+              @foreach ($categories as $key => $category)
+              <li data-target="#customCarousel1" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
+              @endforeach
             </ol>
           </div>
         </div>
-
       </section>
+
       <!-- end slider section -->
     </div>
   </div>
@@ -271,9 +254,11 @@
           <!-- Keep the vertical navbar sticky -->
           <div style="position: sticky; top: 30px;" class="vertical-navbar mt-5" style="height: 300px; overflow-y: auto;">
             <ul class="filters_menu" id="filters_menu">
-              <li data-filter="*" onclick="filterProducts('all');" class="active">All</li>
+              @php
+              $firstCategory = true; // Add a flag to track the first category
+              @endphp
               @foreach ($categories as $category)
-              <li data-filter=".{{ $category->title }}" onclick="filterProducts('{{ $category->id }}')">
+              <li data-filter=".{{ $category->title }}" onclick="filterProducts('{{ $category->id }}')" @if ($firstCategory) class="active" @php $firstCategory=false; @endphp @endif>
                 {{ $category->title }}
               </li>
               @endforeach

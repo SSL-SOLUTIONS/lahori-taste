@@ -19,13 +19,12 @@ class CartController extends Controller
             $cart[$product->id]['quantity'] += $request->quantity;
             $cart[$product->id]['price'] = $product->price * $cart[$product->id]['quantity'];
         } else {
-
             $cartItemData = [
                 'id' => $product->id,
                 'name' => $product->name,
                 'image' => $product->image,
                 'quantity' => 1,
-                'price' => $product->price ,
+                'price' => $product->price * 1,
             ];
             $cart[$product->id] = $cartItemData;
         }

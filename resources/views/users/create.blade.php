@@ -12,8 +12,15 @@
     </div>
     @endif
     <h2>Create User</h2>
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="form-group row">
+            <label for="image" class="col-md-2 col-form-label">Profile Image</label>
+            <div class="col-md-6">
+                <input type="file" name="image" class="form-control">
+            </div>
+        </div>
+
         <div class="form-group row">
             <label for="name" class="col-md-2 col-form-label">Name</label>
             <div class="col-md-6">
