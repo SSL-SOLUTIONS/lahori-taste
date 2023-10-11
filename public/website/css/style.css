@@ -391,13 +391,13 @@ a:focus {
   width: 12px;
   height: 12px;
   border-radius: 100%;
-  opacity: 1;
+  color: rgba(21, 6, 6, 1);
 }
 
 .slider_section .carousel-indicators li.active {
   width: 20px;
   height: 20px;
-  background-color: #ffbe33;
+  background-color: white;
 }
 
 .offer_section {
@@ -1035,7 +1035,7 @@ a:focus {
   /* display: inline-block; */
   padding: 20px;
 
-  margin-top: 80px;
+  margin-top: px;
   height: 800px;
   max-height: 500px;
   overflow-y: auto;
@@ -1044,7 +1044,7 @@ a:focus {
 
 .vertical-navbar ul {
   list-style-type: none;
-  padding: 10px;
+  padding: 10p;
 }
 
 .vertical-navbar li {
@@ -1058,12 +1058,14 @@ a:focus {
   background-color: #e3e3e3;
   border-radius: 5px;
 }
- /* Style the dropdown button */
- .user_link {
+
+/* Style the dropdown button */
+.user_link {
   font-size: 20px;
   color: #333;
   text-decoration: none;
 }
+
 /* Style the dropdown menu container */
 .dropdown-menu {
   border: none;
@@ -1072,6 +1074,7 @@ a:focus {
   border-radius: 8px;
   min-width: 100px;
 }
+
 /* Style the dropdown menu items */
 .dropdown-item {
   color: #333;
@@ -1096,11 +1099,11 @@ a:focus {
   font-size: 24px;
 }
 
-.profile_image{
-  width: 40px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
-  border-radius: 50%; /* Make the image round (for a circular user avatar) */
-  margin-right: 10px; /* Add margin to separate from user's name */
+.profile_image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
   border-radius: 60px;
 }
 
@@ -1109,10 +1112,9 @@ a:focus {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Adjust the z-index as needed */
+  z-index: 1000;
+  /* Adjust the z-index as needed */
   background-image: url('/images/navbar.JPG');
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-

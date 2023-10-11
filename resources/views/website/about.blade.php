@@ -1,7 +1,6 @@
 @extends('layouts.website')
 @section('content')
 
-<br><br><br>
 
   <section class="about_section layout_padding">
     <div class="container  ">

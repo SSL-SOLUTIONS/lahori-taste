@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
     Route::get('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');
     Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
+    Route::get('/cart-update-qty/{id?}/{type?}', [CartController::class, 'cart_update_qty'])->name('cart_update_qty');
     // Route for viewing order history
     Route::get('/process-to-checkout', [OrderController::class, 'processToCheckout'])->name('processToCheckout');
     Route::controller(StripePaymentController::class)->group(function () {

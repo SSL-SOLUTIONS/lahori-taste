@@ -1,7 +1,7 @@
 @extends('layouts.website')
 
 @section('content')
-<br><br><br><br>
+<br><br><br>
 
 <div class="container">
     <div class="row">

@@ -70,13 +70,23 @@
     .fa-user {
       font-size: 24px;
     }
+
+    .header_section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Adjust the z-index as needed */
+  background-image:  url('/images/navbar.JPG');
+  background-repeat: no-repeat;
+  background-size: cover;}
   </style>
 </head>
 
 <body>
   <!-- header section  -->
 
-  <header class="header_section">
+  <header  class="header_section">
         <div class="container">
           <nav class="navbar navbar-expand-lg custom_nav-container">
             <a class="navbar-brand" href="{{route('main')}}">
@@ -199,15 +209,11 @@
         </div>
       </header>
 
-
-
-
   <div  class="container-fluid p-0">
     <div class="hero_area">
       <div class="bg-box">
         <img src="{{asset('images/image-1.jpg')}}" alt="">
       </div>
-     
       <!-- slider section -->
       <section class="slider_section">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -218,11 +224,11 @@
                 <div class="row">
                   <div class="col-md-7 col-lg-6">
                     <div class="detail-box">
-                      <h1>
+                      <h1 style="margin-top: 80px;">
                         {{ $category->title }} <!-- Replace with the appropriate field from your database -->
                       </h1>
                       <p>
-                        {{ $category->description }} <!-- Replace with the appropriate field from your database -->
+                      {{ Str::limit($category->description, $limit = 70, $end = '...')}} <!-- Replace with the appropriate field from your database -->
                       </p>
                     </div>
                   </div>
@@ -232,9 +238,9 @@
             @endforeach
           </div>
           <div class="container">
-            <ol class="carousel-indicators">
+            <ol  class="carousel-indicators">
               @foreach ($categories as $key => $category)
-              <li data-target="#customCarousel1" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
+              <li  data-target="#customCarousel1" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
               @endforeach
             </ol>
           </div>
@@ -255,7 +261,7 @@
           <div style="position: sticky; top: 30px;" class="vertical-navbar mt-5" style="height: 300px; overflow-y: auto;">
             <ul class="filters_menu" id="filters_menu">
               @php
-              $firstCategory = true; // Add a flag to track the first category
+              $firstCategory = true;
               @endphp
               @foreach ($categories as $category)
               <li data-filter=".{{ $category->title }}" onclick="filterProducts('{{ $category->id }}')" @if ($firstCategory) class="active" @php $firstCategory=false; @endphp @endif>
@@ -294,7 +300,7 @@
                     <div class="options">
                       <h6 class="text-start">
                         <!-- Maintain consistent price style -->
-                        <h3 style="margin-top: 7px;">£{{ $product->price }}</h3>
+                        <h3 class="ml-0" > Price: £{{ $product->price }}</h3>
                       </h6>
                       <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
                         <!-- Keep the cart symbol consistent in style and size -->

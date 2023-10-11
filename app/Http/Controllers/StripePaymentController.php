@@ -57,13 +57,13 @@ class StripePaymentController extends Controller
                 'order_id' => $order->id
             ]);
         }
-        // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        // Stripe\Charge::create ([
-        //         "amount" => $this->total() * 100,
-        //         "currency" => "GBP",
-        //         "source" => $request->stripeToken,
-        //         "description" => "Thanks For Payment." 
-        // ]);
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $this->total() * 100,
+                "currency" => "GBP",
+                "source" => $request->stripeToken,
+                "description" => "Thanks For Payment." 
+        ]);
 
         Session::forget('cart');
         Session::flash('success', 'Payment successful!');

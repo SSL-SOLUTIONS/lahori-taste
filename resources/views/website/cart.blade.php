@@ -3,13 +3,15 @@
 <br><br><br>
 
 @if(session()->has('success'))
-<div class="alert alert-success">
+<div class="alert alert-success alert-dismissible fade show col-4">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     {{ session()->get('success') }}
 </div>
 @endif
-
 @if ($errors->any())
-<div class="alert alert-danger">
+<div class="alert alert-danger col-6">
     <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
@@ -40,10 +42,10 @@
                     </td>
                     <td>
                         <!-- Decrement Quantity Button -->
-                        <button class="btn btn-sm btn-primary" onclick="updateQuantity({{ $productId }}, 'decrement')">-</button>
+                        <a class="btn btn-sm btn-primary" href="{{route('cart_update_qty' , [  $productId , 'minus'] )}}">-</a>
                         <span id="quantity_{{ $cartItem['id'] }}">{{ $cartItem['quantity'] }}</span>
                         <!-- Increment Quantity Button -->
-                        <button class="btn btn-sm btn-primary" onclick="updateQuantity({{ $productId }}, 'increment')">+</button>
+                        <a class="btn btn-sm btn-primary" href="{{route('cart_update_qty' , [  $productId , 'plus'])}}">+</a>
                     </td>
                     <td>£{{ $cartItem['price'] }}</td>
                     <td class="align-middle">
@@ -62,7 +64,6 @@
     $totalPrice += $cartItem['price'];
     }
     @endphp
-
     <div class="text-left">
         <p><strong>Total Price: £{{ number_format($totalPrice, 2) }}</strong></p>
     </div>
@@ -73,24 +74,7 @@
     @endif
 </div>
 <br>
-<script>
-    function updateQuantity(itemId, action) {
-        let quantityElement = document.getElementById('quantity_' + itemId);
-        let priceElement = document.getElementById('price_' + itemId);
-        let currentQuantity = parseInt(quantityElement.innerText);
-        let pricePerItem = parseFloat(priceElement.innerText.replace('$', ''));
 
-        if (action === 'increment') {
-            currentQuantity += 1;
-        } else if (action === 'decrement' && currentQuantity > 1) {
-            currentQuantity -= 1;
-        }
-
-        quantityElement.innerText = currentQuantity;
-        priceElement.innerText = '$' + (currentQuantity * pricePerItem).toFixed(2); // Update the price based on the new quantity
-        // You may also want to update the cart data in the session here
-    }
-</script>
 
 
 @endsection

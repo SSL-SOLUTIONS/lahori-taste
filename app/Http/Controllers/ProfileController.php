@@ -68,7 +68,13 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id, 
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:255',
+            'image' => 'nullable|image',
         ]);
+        if($request->has('image')){
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('img/users'), $imageName);
+            $user->image = $imageName;
+           }
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->phone = $validatedData['phone'];

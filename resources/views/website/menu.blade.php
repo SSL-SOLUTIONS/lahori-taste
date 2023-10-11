@@ -1,6 +1,6 @@
 @extends('layouts.website')
 @section('content')
-<br><br><br>
+
 
 <section class="food_section layout_padding p-0">
     <div class="container-fluid pt-5">
@@ -8,7 +8,7 @@
             <h2>Our Menu</h2>
         </div>
         @if(session()->has('message'))
-            <div class="alert alert-success alert-dismissible fade show">
+            <div  class="alert alert-success alert-dismissible fade show col-4">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -36,7 +36,7 @@
                                     </p>
                                     <div class="options">
                                         <h3>
-                                            £{{ $product->price }}
+                                         Price:  £{{ $product->price }}
                                         </h3>
                                         <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
                                             <!-- Keep the cart symbol consistent in style and size -->
