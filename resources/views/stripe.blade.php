@@ -1,11 +1,11 @@
 @extends('layouts.website')
 @section('content')
 
-<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')}}"></script>
+<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
 <div class="container">
     <h1 class="text-center">Payment Details</h1>
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div style="border: 2px solid rgba(238, 238, 238, 1); margin-bottom: 10px;" class="col-md-6 offset-md-3">
             <div class="panel panel-default credit-card-box">
                 <div class="panel-heading">
                     <h3 class="panel-title">Payment Details</h3>
@@ -25,44 +25,41 @@
                         @endforeach
                     </div>
                     @endif
-
                     <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                         @csrf
 
                         <div class="form-row row">
-                            <div class="col-12 form-group required">
+                            <div class="col-md-12 form-group required">
                                 <label class="control-label">Name on Card</label>
-                                <input class="form-control" size="4" type="text" name="name_on_card">
+                                <input class="form-control" type="text" name="name_on_card">
                             </div>
                         </div>
 
                         <div class="form-row row">
-                            <div class="col-12 form-group card required">
+                            <div class="col-md-12 form-group card required">
                                 <label class="control-label">Card Number</label>
-                                <input autocomplete="off" class="form-control card-number" size="20" type="text" maxlength="16" name="card_number">
+                                <input autocomplete="off" class="form-control card-number" type="text" name="card_number">
                             </div>
                         </div>
 
                         <div class="form-row row">
-                            <div class="col-4 form-group cvc required">
+                            <div class="col-md-4 form-group cvc required">
                                 <label class="control-label">CVC</label>
-                                <input autocomplete="off" class="form-control card-cvc" placeholder="ex. 311" size="4" type="number" maxlength="4" name="card_cvc">
+                                <input autocomplete="off" class="form-control card-cvc" placeholder="ex. 311" type="number" maxlength="4" name="card_cvc">
                             </div>
-                            <div class="col-4 form-group expiration required">
+                            <div class="col-md-4 form-group expiration required">
                                 <label class="control-label">Expiration Month</label>
-                                <input class="form-control card-expiry-month" placeholder="MM" size="2" type="number" maxlength="2" name="card_expiry_month">
+                                <input class="form-control card-expiry-month" placeholder="MM" type="number" maxlength="2" name="card_expiry_month">
                             </div>
-                            <div class="col-4 form-group expiration required">
+                            <div class="col-md-4 form-group expiration required">
                                 <label class="control-label">Expiration Year</label>
-                                <input class="form-control card-expiry-year" placeholder="YYYY" size="4" type="number" maxlength="4" name="card_expiry_year">
+                                <input class="form-control card-expiry-year" placeholder="YYYY" type="number" maxlength="4" name="card_expiry_year">
                             </div>
                         </div>
-
-    
-
                         <div class="row">
-                            <div class="col-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">${{ $totalPrice }} Pay Now</button>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">${{ $totalPrice }}
+                                    Pay Now</button>
                             </div>
                         </div>
                     </form>
@@ -143,6 +140,4 @@
 
     });
 </script>
-
-</html>
 @endsection

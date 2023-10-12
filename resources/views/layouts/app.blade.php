@@ -36,13 +36,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a style="color: white;" class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a style="color: white;" class="nav-link " href="{{ route('login') }}"><b>{{ __('Login') }}</b></a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a style="color: white;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a style="color: white;" class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
                                 </li>
                             @endif
                         @else

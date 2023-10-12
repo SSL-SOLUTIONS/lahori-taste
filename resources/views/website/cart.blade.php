@@ -1,9 +1,8 @@
 @extends('layouts.website')
 @section('content')
 <br><br><br>
-
 @if(session()->has('success'))
-<div class="alert alert-success alert-dismissible fade show col-4">
+<div class="alert alert-success alert-dismissible fade show col-12">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -19,7 +18,6 @@
     </ul>
 </div>
 @endif
-
 <div class="container mt-4">
     <h1 class="text-center">Your Cart</h1>
     <div class="table-responsive">
@@ -74,7 +72,4 @@
     @endif
 </div>
 <br>
-
-
-
 @endsection

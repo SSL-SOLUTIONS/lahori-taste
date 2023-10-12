@@ -33,7 +33,7 @@
   <title>Lahori Taste</title>
   <style>
     /* Style the dropdown button */
-    .user_link {
+    .user_link { 
       font-size: 20px;
       color: #333;
       text-decoration: none;
@@ -77,8 +77,7 @@
   left: 0;
   right: 0;
   z-index: 1000; /* Adjust the z-index as needed */
-  background-image:  url('/images/navbar.JPG');
-  background-repeat: no-repeat;
+  background-color:rgba(45, 23, 26, 1);
   background-size: cover;}
   </style>
 </head>
@@ -189,7 +188,6 @@
                   <i class="fa fa-user" aria-hidden="true"></i> {{ $firstName }}
                 </a>
                 @endif
-
                 <div class="dropdown-menu" aria-labelledby="userIcon">
                   <a class="dropdown-item" href="{{ route('profile.show', ['profile' => Auth::id()]) }}">Profile</a>
                   <form action="{{ route('logout') }}" method="POST">
@@ -290,25 +288,25 @@
               <div class="col-lg-4 col-sm-6 p-0 all category-{{ $product->category?->id }}">
                 <div class="box m-3 p-0">
                   <div class="img-box">
-                    <!-- Ensure the image stays responsive -->
                     <img class="img-fluid" src="{{ asset('/img/products/'.$product->image) }}" alt="{{ $product->name }}">
                   </div>
                   <div class="detail-box">
                     <b>{{$product->name}}</b>
-                    <!-- Maintain consistent text style and size -->
+                  
                     <p> {{ Str::limit($product->description, $limit = 20, $end = '...')}}</p>
                     <div class="options">
                       <h6 class="text-start">
-                        <!-- Maintain consistent price style -->
+                    
                         <h3 class="ml-0" > Price: £{{ $product->price }}</h3>
                       </h6>
                       <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
-                        <!-- Keep the cart symbol consistent in style and size -->
+                      
                         <i class="fa fa-plus"></i>
                       </a>
                     </div>
                   </div>
                 </div>
+              
               </div>
               @endforeach
             </div>

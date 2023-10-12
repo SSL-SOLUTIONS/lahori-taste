@@ -5,24 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="bg-warning card-header">Profile</div>
-                <div class="card-body text-center">
-                    @if($user->image)
-                        <img src="{{ asset('/img/users/' . $user->image) }}" alt="Profile Image" class="rounded-circle" width="150">
-                    @else
-                        <!-- <img src="{{ asset('path_to_default_image.jpg') }}" alt="Default Image" class="rounded-circle" width="150"> -->
-                        <i class="fas fa-user icon"></i>
-                    @endif
-                    <h3>Name: {{ $user->name }}</h3>
-                    <h3>Email:  {{ $user->email }}</h3>
-                    <h3>Phone Number: {{ $user->phone }}</h3>
-                    <h3>Address: {{ $user->address }}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="bg-warning card-header">Edit Profile</div>
                 <div class="card-body">
@@ -41,27 +24,32 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name"><b>Name</b></label>
                             <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email"><b>Email</b></label>
                             <input type="email" id="email" name="email" value="{{ $user->email }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
+                            <label for="phone"><b>Phone Number</b></label>
                             <input type="text" id="phone" name="phone" value="{{ $user->phone }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="address">Address</label>
+                            <label for="address"><b>Address</b></label>
                             <input type="text" id="address" name="address" value="{{ $user->address }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="image">Profile Image</label>
+                        @if($user->image)
+                        <img src="{{ asset('/img/users/' . $user->image) }}" alt="Profile Image" class="rounded-circle" width="50">
+                    @else
+                        <i class="fas fa-user icon rounded-circle" style="font-size: 150px;"></i>
+                    @endif
+                            <label for="image"><b>Profile Image</b></label>
                             <input type="file" id="image" name="image" class="form-control-file">
                         </div>
 

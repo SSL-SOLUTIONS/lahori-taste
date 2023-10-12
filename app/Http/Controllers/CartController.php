@@ -13,7 +13,6 @@ class CartController extends Controller
         if (!$product) {
             return redirect()->route('menus')->with('error', 'Item not found.');
         }
-
         $cart = $request->session()->get('cart', []);
         if (isset($cart[$product->id])) {
             $cart[$product->id]['quantity'] += $request->quantity;
@@ -47,33 +46,26 @@ class CartController extends Controller
         return redirect()->route('cart')->with('error', 'Item not found in cart.');
     }
 
-    public function cart_update_qty($productId = '', $type = ''){
+    public function cart_update_qty($productId = '', $type = '')
+    {
         $cart = session()->get('cart', []);
-        if(isset($cart[$productId])){
-            if($type == 'plus'){
+        if (isset($cart[$productId])) {
+            if ($type == 'plus') {
                 $cart[$productId]['quantity'] += 1;
-            } else if($type == 'minus'){
-                if($cart[$productId]['quantity'] <= 1){
+            } else if ($type == 'minus') {
+                if ($cart[$productId]['quantity'] <= 1) {
                     unset($cart[$productId]);
                 } else {
                     $cart[$productId]['quantity'] -= 1;
                 }
             }
-            
-            // Always recalculate the price based on the product's original price and the new quantity
             $product = Product::find($productId);
             $cart[$productId]['price'] = $product->price * $cart[$productId]['quantity'];
-            
+
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Cart updated successfully.');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'Item not found.');
         }
     }
-    
-    }
-    
-    
-    
-
+}

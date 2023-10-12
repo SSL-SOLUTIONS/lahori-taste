@@ -40,7 +40,7 @@
       right: 0;
       z-index: 1000;
       /* Adjust the z-index as needed */
-      background-image: url('/images/navbar.JPG');
+      background-color:rgba(45, 23, 26, 1);
       background-repeat: no-repeat;
       background-size: cover;
     }

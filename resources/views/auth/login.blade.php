@@ -10,19 +10,16 @@
     body::before {
         content: "";
         background-image: url('{{ asset('images/image-1.jpg') }}');
-        background-size: cover;
-        filter: blur(4px); 
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-
-   
+        background-size:cover;
+        filter:blur(4px); 
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index:-1;
+    };
 </style>
-
 <br><br><br>
 <div class="container">
     <div class="row justify-content-center">
@@ -34,18 +31,17 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <label for="email" class="form-label"><b>{{ __('Email Address') }}</b></label>
+                            <input placeholder="Enter Your Email Here" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-
                         <div class="mb-3">
-                            <label for="password" class="form-label">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <label for="password" class="form-label"><b>{{ __('Password') }}</b></label>
+                            <input placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -58,7 +54,7 @@
                             </button>
                             @if (Route::has('password.request'))
                             <a  href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
+                                {{ __('Forget Your Password?') }}
                             </a>
                             @endif
                         </div>

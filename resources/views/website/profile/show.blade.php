@@ -1,42 +1,55 @@
 @extends('layouts.website')
 @section('content')
-<br><br>
-<div class="container">
+<br><br><br>
+<h1 style="text-align: center;">My Profile</h1>
+<style>
+    .profile-container {
+        /* Remove background from the container */
+        background: none;
+        color: white;
+    }
+
+    .profile-content {
+        background: rgba(17, 3, 4, 1) ;/* Adjust the rgba values and opacity as needed */
+        backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+    }
+</style>
+
+
+<div class="container profile-container">
     @if(session()->has('success'))
-        <div class="col-8 alert alert-success alert-dismissible fade show">
+        <div class="alert alert-success alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             {{ session()->get('success') }}
         </div>
     @endif
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
+    <div style="justify-content: space-around;" class="row">
+        <div class="col-lg-10 col-md-10 col-sm-3">
+            <div class="card profile-content"> <!-- Add the profile-content class here -->
                 <div class="text-center mt-3">
                     @if($user->image)
                         <img src="{{ asset('/img/users/' . $user->image) }}" alt="Profile Image" class="rounded-circle" width="150">
                     @else
-                        <!-- <img src="{{ asset('path_to_default_image.jpg') }}" alt="Default Image" class="rounded-circle" width="150"> -->
-                        <i class="fas fa-user icon rounded-circle" width="150"></i>
+                        <i class="fas fa-user icon rounded-circle" style="font-size: 150px;"></i>
                     @endif
                 </div>
                 <div class="card-body text-center">
-                   <h3> <b>Name:</b> {{ $user->name }}</h3>
-                    <h3><b>Email:</b>{{ $user->email }}</h3>
+                    <h3><b>Name:</b> {{ $user->name }}</h3>
+                    <h3><b>Email:</b> {{ $user->email }}</h3>
                     <h3><b>Contact Number:</b> {{ $user->phone }}</h3>
-                    <h3><b>Address:</b>{{ $user->address }}</h3>
-                    <a href="{{ route('profile.edit', ['profile' => $user->id]) }}" class="btn btn-warning">Edit Profile</a>
+                    <h3><b>Address:</b> {{ $user->address }}</h3>
+                    <a style="color: white;" href="{{ route('profile.edit', ['profile' => $user->id]) }}" class="btn btn-warning">Edit Profile</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br>
 <form action="{{ route('logout') }}" method="POST">
     @csrf
-    <button type="submit"
-    onclick="return confirm('Are you sure you want to Logout?')" class="btn btn-warning ml-5">Logout</button>
+    <button style="color: white;" type="submit" onclick="return confirm('Are you sure you want to Logout?')" class="btn btn-warning mt-3 ml-5">Logout</button>
 </form>
+</div>
 <br>
 @endsection
