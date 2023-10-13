@@ -22,7 +22,7 @@
                     <label for="address" class="form-label">Address</label>
                     <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mb-5">Pay to Checkout</button>
+                <button type="submit" class="btn btn-warning w-100 mb-5">Pay to Checkout</button>
             </form>
         </div>
     </div>

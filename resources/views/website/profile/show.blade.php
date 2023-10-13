@@ -36,9 +36,9 @@
                     @endif
                 </div>
                 <div class="card-body text-center">
-                    <h3><b>Name:</b> {{ $user->name }}</h3>
-                    <h3><b>Email:</b> {{ $user->email }}</h3>
-                    <h3><b>Contact Number:</b> {{ $user->phone }}</h3>
+                    <h3><b>Name:</b>{{ $user->name }}</h3>
+                    <h3><b>Email:</b>{{ $user->email }}</h3>
+                    <h3><b>Contact Number:</b>{{ $user->phone }}</h3>
                     <h3><b>Address:</b> {{ $user->address }}</h3>
                     <a style="color: white;" href="{{ route('profile.edit', ['profile' => $user->id]) }}" class="btn btn-warning">Edit Profile</a>
                 </div>

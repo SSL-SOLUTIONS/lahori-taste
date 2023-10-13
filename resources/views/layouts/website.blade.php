@@ -282,6 +282,52 @@
   </script>
   <!-- End Google Map -->
 
+  <script>
+    document.getElementById('addToCartButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        const quantity = parseInt(document.getElementById('inputQuantity').value);
+        if (quantity > 0) {
+            document.getElementById('addToCartForm').submit();
+            alert('Item Added To Cart Successfully')
+        } else {
+            alert('Please enter a valid quantity.');
+        }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Show the scroll-to-top circle when user scrolls down
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('#scroll-to-top').fadeIn();
+            } else {
+                $('#scroll-to-top').fadeOut();
+            }
+        });
+
+        // Scroll to the top when the circle is clicked
+        $('#scroll-to-top').click(function() {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+</script>
+
+
+<script>
+    function filterProducts(category) {
+
+      if (category == 'all') {
+        $('.all').removeClass('d-none');
+      } else {
+        $('.all').addClass('d-none');
+        $('.category-' + category).removeClass('d-none');
+      }
+    }
+  </script>
+
 
 </body>
 

@@ -1,11 +1,11 @@
 @extends('layouts.website')
 @section('content')
-<br><br><br>
+<br><br>
 @if(session()->has('success'))
-<div class="alert alert-success alert-dismissible fade show col-12">
+<div class="alert alert-success alert-dismissible fade show col-md-sm-3">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
-    </button>
+    </button> 
     {{ session()->get('success') }}
 </div>
 @endif

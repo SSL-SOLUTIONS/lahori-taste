@@ -1,6 +1,6 @@
 @extends('layouts.website')
 @section('content')
-<br><br><br>
+<br>
 
 @if(session()->has('success'))
 <div class="alert alert-success">
@@ -25,7 +25,7 @@
             <thead>
                 <tr>
                     <th scope="col">Item Name</th>
-                    <th scope="col"></th>
+                    <th scope="col">Image</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Subtotal</th>

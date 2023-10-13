@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
+
+
 <style>
     /* CSS to create a background blur effect */
     body {

@@ -1,6 +1,6 @@
 @extends('layouts.website')
 @section('content')
-<br><br><br>
+<br>
 
 @if(session()->has('success'))
 <div class="alert alert-success">

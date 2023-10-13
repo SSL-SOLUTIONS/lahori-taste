@@ -46,10 +46,18 @@ class WebsiteController extends Controller
 
     public function menus(Request $request)
 {
-    $cart = (array)$request->session()->get('cart', []);
-    $products = Product::all();
+    {
 
-    return view('website.menu', compact('cart', 'products'));
+        $categoryId = $request->input('category');
+        $categories = Category::all();
+        if ($categoryId) {
+            $products = Product::where('category_id', $categoryId)->get();
+        } else {
+            $products = Product::all();
+        }
+        $cart = (array)$request->session()->get('cart', []);
+        return view('website.menu', compact('products', 'categories','cart'));
+    }
 }
 
     

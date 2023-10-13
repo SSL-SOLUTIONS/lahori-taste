@@ -60,7 +60,11 @@ class CartController extends Controller
                 }
             }
             $product = Product::find($productId);
-            $cart[$productId]['price'] = $product->price * $cart[$productId]['quantity'];
+            if (isset($cart[$productId])) {
+                $cart[$productId]['price'] = $product->price * $cart[$productId]['quantity'];
+            } else {
+                
+            }
 
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Cart updated successfully.');

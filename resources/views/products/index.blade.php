@@ -30,7 +30,7 @@
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
-                    <td>£{{ $product->price }}</td>
+                    <td>{{config('app.currency')}}{{ $product->price }}</td>
                     <td>{{ $product->category->title }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>

@@ -1034,7 +1034,6 @@ a:focus {
 .vertical-navbar {
   /* display: inline-block; */
   padding: 20px;
-
   margin-top: px;
   height: 800px;
   max-height: 500px;
@@ -1071,7 +1070,6 @@ a:focus {
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  border-radius: 8px;
   min-width: 100px;
 }
 
@@ -1113,7 +1111,6 @@ a:focus {
   left: 0;
   right: 0;
   z-index: 1000;
-  /* Adjust the z-index as needed */
   background-image: url('/images/navbar.JPG');
   background-repeat: no-repeat;
   background-size: cover;
