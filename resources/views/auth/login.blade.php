@@ -2,15 +2,13 @@
 @section('content')
 
 
-<style>
-    /* CSS to create a background blur effect */
+<style>    
     body {
         position: relative;
     }
-
     body::before {
         content: "";
-        background-image: url('{{ asset('images/image-1.jpg') }}');
+        background-color:rgba(22, 6, 7, 1);
         background-size:cover;
         filter:blur(4px); 
         position:fixed;
@@ -20,7 +18,7 @@
         height:100%;
         z-index:-1;
     };
-</style>
+    </style>
 <br><br><br>
 <div class="container">
     <div class="row justify-content-center">

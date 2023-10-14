@@ -59,7 +59,7 @@ class StripePaymentController extends Controller
         }
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-                "amount" => $this->total() * 100,
+                "amount" => $this->total()*100,
                 "currency" => "GBP",
                 "source" => $request->stripeToken,
                 "description" => "Thanks For Payment." 
@@ -67,7 +67,7 @@ class StripePaymentController extends Controller
 
         Session::forget('cart');
         Session::flash('success', 'Payment successful!');
-        return redirect()->route('cart');
+        return redirect()->route('thankyou');
     }
     private function total()
     {
@@ -78,5 +78,8 @@ class StripePaymentController extends Controller
             $total += $subtotal;
         }
         return $total;
+    }
+    public function thankyou(){
+        return view('thanks');
     }
 }

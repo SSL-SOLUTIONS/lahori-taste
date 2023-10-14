@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="bg-warning card-header">Edit Profile</div>
+                <div style="color: white;" class="bg-warning card-header">Edit Profile</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -53,7 +53,7 @@
                             <input type="file" id="image" name="image" class="form-control-file">
                         </div>
 
-                        <button type="submit" class="btn btn-warning">Update Profile</button>
+                        <button  style="color: white;" type="submit" class="btn btn-warning">Update Profile</button>
                     </form>
                 </div>
             </div>

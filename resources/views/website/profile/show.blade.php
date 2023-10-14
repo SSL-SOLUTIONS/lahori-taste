@@ -1,7 +1,7 @@
 @extends('layouts.website')
 @section('content')
-<br><br><br>
-<h1 style="text-align: center;">My Profile</h1>
+<br><br>
+<h1 style="text-align:center;">My Profile</h1>
 <style>
     .profile-container {
         /* Remove background from the container */
@@ -10,12 +10,10 @@
     }
 
     .profile-content {
-        background: rgba(17, 3, 4, 1) ;/* Adjust the rgba values and opacity as needed */
+        background: rgba(17, 3, 5, 0.9) ;/* Adjust the rgba values and opacity as needed */
         backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
     }
 </style>
-
-
 <div class="container profile-container">
     @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show">

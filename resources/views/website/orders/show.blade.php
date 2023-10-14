@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td class="text-right pr-5 font-weight-bold" colspan="4"> Deliver Charges</td>
-                    <td class="font-weight-bold"> {{config('app.currency')}} {{ $order->delivery_charges ?? '0'}} </td>
+                    <td class="font-weight-bold"> {{config('app.currency')}} {{ (float)$order->delivery_charges ?? '0'}} </td>
                 </tr>
                 <tr>
                     <td class="text-right pr-5 font-weight-bold" colspan="4"> Net Total</td>

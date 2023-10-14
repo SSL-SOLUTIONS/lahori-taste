@@ -2,7 +2,7 @@
 @section('content')
 <br><br>
 @if(session()->has('success'))
-<div class="alert alert-success alert-dismissible fade show col-md-sm-3">
+<div class="alert alert-success alert-dismissible fade show col-lg-md-sm-3">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button> 
@@ -40,10 +40,10 @@
                     </td>
                     <td>
                         <!-- Decrement Quantity Button -->
-                        <a class="btn btn-sm btn-primary" href="{{route('cart_update_qty' , [  $productId , 'minus'] )}}">-</a>
+                        <a class="btn btn-sm btn-warning" href="{{route('cart_update_qty' , [  $productId , 'minus'] )}}">-</a>
                         <span id="quantity_{{ $cartItem['id'] }}">{{ $cartItem['quantity'] }}</span>
                         <!-- Increment Quantity Button -->
-                        <a class="btn btn-sm btn-primary" href="{{route('cart_update_qty' , [  $productId , 'plus'])}}">+</a>
+                        <a class="btn btn-sm btn-warning" href="{{route('cart_update_qty' , [  $productId , 'plus'])}}">+</a>
                     </td>
                     <td>£{{ $cartItem['price'] }}</td>
                     <td class="align-middle">
@@ -63,13 +63,13 @@
     }
     @endphp
     <div class="text-left">
-        <p><strong>Total Price: £{{ number_format($totalPrice, 2) }}</strong></p>
+        <p><strong>Total Price:{{config('app.currency')}}{{ number_format($totalPrice, 2) }}</strong></p>
     </div>
     @if ($totalPrice > 0)
     <div class="text-center">
         <a class="btn btn-warning" href="{{ route('processToCheckout') }}">Process to Checkout</a>
     </div>
+    <br>
     @endif
 </div>
-<br>
 @endsection

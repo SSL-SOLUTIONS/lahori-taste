@@ -8,9 +8,9 @@
 
     body::before {
         content: "";
-        background-image: url('{{ asset('images/image-1.jpg') }}');
+        background-color:rgba(22, 6, 7, 1);
         background-size:cover;
-        filter:blur(4px); 
+        filter:blur(2px); 
         position:fixed;
         top:0;
         left:0;
