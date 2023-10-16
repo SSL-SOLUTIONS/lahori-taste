@@ -13,12 +13,8 @@
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.carousel.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
-
   <link rel="shortcut icon" href="" />
-
-
 </head>
-
 <body>
   <div class="container-scroller">
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
