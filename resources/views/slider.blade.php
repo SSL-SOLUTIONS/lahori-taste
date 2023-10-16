@@ -193,16 +193,20 @@
             <h1 class="pt-5" style="text-align:center; color:white">Our Best Sellers</h1>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    @php
-                    $products = \App\Models\product::all();
-                    @endphp
-                    @for ($i = 0; $i < count($products); $i++) @if ($i % 11==0) <div class="swiper-slide" id="swiper-slid">
-                        <img src="{{ asset('/img/products/' . $products[$i]->image) }}" />
-                </div>
-                <!-- <h5 style="color: white;">{{ Str::limit($products[$i]->name, $limit = 15, $end = '...')}}</h> -->
-                @endif
+                @php
+                $productIds = [5, 6,10, 12,20,31, 32, 57, 82,];
+                $products = \App\Models\Product::whereIn('id', $productIds)->get();
+                @endphp
 
-                @endfor
+                @foreach($products as $product)
+                <div class="swiper-slide" id="swiper-slid">
+                    <img src="{{ asset('/img/products/' . $product->image) }}" />
+                </div>
+                @endforeach
+               
+             
+
+               
             </div>
         </div>
         <div style="display: flex; justify-content: center;">

@@ -24,22 +24,22 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="name"><b>Name</b></label>
+                        <label for="name"><b>UserName</b></label>
                             <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="email"><b>Email</b></label>
+                        <label for="email"><b><i class="fas fa-envelope"></i> Email</b></label>
                             <input type="email" id="email" name="email" value="{{ $user->email }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="phone"><b>Phone Number</b></label>
+                        <label for="phone"><b><i class="fas fa-phone"></i> Phone Number</b></label>
                             <input type="text" id="phone" name="phone" value="{{ $user->phone }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="address"><b>Address</b></label>
+                        <label for="address"><b><i class="fas fa-map-marker-alt"></i> Address</b></label>
                             <input type="text" id="address" name="address" value="{{ $user->address }}" class="form-control">
                         </div>
 

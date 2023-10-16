@@ -1,66 +1,110 @@
-@extends('layouts.app')
-@section('content')
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lahori Taste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="">
+
+    <style>
+        .main-login-page {
+            position: relative;
+        }
+
+        .main-login-page::before {
+            content: "";
+            background-color: rgba(22, 6, 7, 1);
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
 
-<style>    
-    body {
-        position: relative;
-    }
-    body::before {
-        content: "";
-        background-color:rgba(22, 6, 7, 1);
-        background-size:cover;
-        filter:blur(4px); 
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        z-index:-1;
-    };
+
+        @media (max-width: 576px) {
+            .main-login-page::before {
+                width: 100%;
+                height: 100%;
+            }
+
+            .custom-card {
+                margin: 0;
+            }
+        }
     </style>
-<br><br><br>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div 
-                 class="card-header bg-warning text-white"> <h2>{{ __('Login') }}</h2></div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="email" class="form-label"><b>{{ __('Email Address') }}</b></label>
-                            <input placeholder="Enter Your Email Here" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label"><b>{{ __('Password') }}</b></label>
-                            <input placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="mb-0">
-                            <button type="submit" class="btn btn-warning">
-                                {{ __('Login') }}
-                            </button>
-                            @if (Route::has('password.request'))
-                            <a  href="{{ route('password.request') }}">
-                                {{ __('Forget Your Password?') }}
+</head>
+
+<body>
+    <div class="container main-login-page">
+        <div style="margin-top: 150px;" class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <div style="background-color: rgba(232, 231, 231, 1);" class="card custom-card">
+                    <h2 class="card-header text-center">Login</h2>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label for="email"><b><i class="fas fa-envelope"></i> Email:</b></label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter Your Email" required>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert" id="email-error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><b><i class="fas fa-lock"></i> Password:</b></label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Enter Your Password" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="far fa-eye" id="togglePassword"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert" id="password-error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-block"><b>Login</b></button>
+                        </form>
+                        <p class="text-center mt-3">Don't have an account |
+                            <a href="{{ 'register' }}" class="text-decoration-none">
+                                Sign Up
                             </a>
-                            @endif
-                        </div>
-                    </form>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+
+            togglePassword.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    togglePassword.classList.remove('far-eye');
+                    togglePassword.classList.add('far-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    togglePassword.classList.remove('far-eye-slash');
+                    togglePassword.classList.add('far-eye');
+                }
+            });
+        });
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
