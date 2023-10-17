@@ -1,28 +1,68 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+<head>
+    <title>Lahori Taste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="">
 
-                <div class="card-body">
-                    @if (session('resent'))
+    <style>
+        body{
+      background-color:rgba(22, 6, 7, 1) 
+        }
+        .main-verification-page {
+            position: relative;
+            background-color: rgba(22, 6, 7, 1);
+            background-size: cover;
+        }
+
+        .custom-card {
+            background-color: rgba(232, 231, 231, 1);
+            margin-top: 150px;
+        }
+
+        .custom-card .card-header {
+            background-color: transparent;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .custom-card .card-body {
+            background-color: transparent;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container main-verification-page">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <div class="card custom-card">
+                    <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                    <div class="card-body">
+                        @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
-                    @endif
+                        @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
+                        {{ __('Before proceeding, please check your email for a verification link.') }}
+                        {{ __('If you did not receive the email') }},
+                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

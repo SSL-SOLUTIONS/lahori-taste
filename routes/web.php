@@ -33,7 +33,7 @@ Route::get('/about', [WebsiteController::class, 'about'])->name('about');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 
 //  Admin Panel Routes
-Route::middleware(["auth", "isAdmin"])->group(function () {
+Route::middleware(["auth", "isAdmin" ,"verified"])->group(function () {
     Route::get('/panel', [AdminController::class, 'panel'])->name('panel');
     Route::resource('/users', UserController::class);
     Route::get('/order', [OrderController::class, 'order'])->name('order');
@@ -44,7 +44,7 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
 
 });
 // Cart related routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
     Route::get('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');
     Route::get('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
@@ -57,10 +57,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('stripe-store', 'stripePost')->name('stripe.post');
         Route::get('/thankyou','thankyou')->name('thankyou');
     });
-
     // user routes 
     Route::get('/orders', [WebsiteController::class, 'orders'])->name('orders');
     Route::get('/order-details/{id?}', [WebsiteController::class, 'orderDetails'])->name('orders.details');
 });
-Auth::routes();
+Auth::routes(['verify' => true]);;
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

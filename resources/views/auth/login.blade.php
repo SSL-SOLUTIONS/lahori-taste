@@ -72,11 +72,10 @@
                             </div>
                             <button type="submit" class="btn btn-warning btn-block"><b>Login</b></button>
                         </form>
-                        <p class="text-center mt-3">Don't have an account |
-                            <a href="{{ 'register' }}" class="text-decoration-none">
-                                Sign Up
-                            </a>
+                        <p class="text-center mt-3">Don't have an account?
+                            <a href="{{ route('password.request') }}" class="text-decoration-none">Forgot Your Password?</a>
                         </p>
+                        <p class="text-center">Or, <a href="{{ route('register') }}" class="text-decoration-none">Sign Up</a></p>
                     </div>
                 </div>
             </div>

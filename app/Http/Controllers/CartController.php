@@ -63,7 +63,6 @@ class CartController extends Controller
             if (isset($cart[$productId])) {
                 $cart[$productId]['price'] = $product->price * $cart[$productId]['quantity'];
             } else {
-                
             }
 
             session()->put('cart', $cart);

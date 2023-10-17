@@ -47,7 +47,7 @@
                         @if($user->image)
                         <img src="{{ asset('/img/users/' . $user->image) }}" alt="Profile Image" class="rounded-circle" width="50">
                     @else
-                        <i class="fas fa-user icon rounded-circle" style="font-size: 150px;"></i>
+                    <i class="fas fa-user icon rounded-circle" style="font-size: 130px;"></i>
                     @endif
                             <label for="image"><b>Profile Image</b></label>
                             <input type="file" id="image" name="image" class="form-control-file">
