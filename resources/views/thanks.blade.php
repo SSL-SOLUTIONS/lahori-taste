@@ -3,7 +3,7 @@
 <head>
     <style>
         body {
-            background-color: #f5f5f5;
+            background-color:rgba(22, 6, 7, 1);
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -13,7 +13,7 @@
         }
 
         .container {
-            background-color: #fff;
+            background-color: rgba(232, 231, 231, 1);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             max-width: 400px;
@@ -51,9 +51,6 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
-        
-
-        
     </style>
 </head>
 <body>

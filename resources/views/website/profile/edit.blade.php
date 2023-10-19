@@ -24,7 +24,7 @@
                         @method('PUT')
 
                         <div class="form-group">
-                        <label for="name"><b>UserName</b></label>
+                        <label for="name"><b><i class="fas fa-user"></i> Name</b></label>
                             <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control">
                         </div>
 

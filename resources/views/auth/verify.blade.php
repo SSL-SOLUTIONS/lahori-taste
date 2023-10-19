@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Lahori Taste</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,9 +8,10 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="">
 
     <style>
-        body{
-      background-color:rgba(22, 6, 7, 1) 
+        body {
+            background-color: rgba(22, 6, 7, 1);
         }
+
         .main-verification-page {
             position: relative;
             background-color: rgba(22, 6, 7, 1);
@@ -34,6 +34,7 @@
             text-align: center;
         }
     </style>
+
 </head>
 
 <body>
@@ -41,19 +42,18 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div class="card custom-card">
-                    <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                    <div class="card-header">Verify Your Email Address</div>
                     <div class="card-body">
                         @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            A fresh verification link has been sent to your email address.
                         </div>
                         @endif
-
-                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }},
+                        Before proceeding, please check your email for a verification link.
+                        If you did not receive the email,
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">click here to request another</button>.
                         </form>
                     </div>
                 </div>
@@ -64,5 +64,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

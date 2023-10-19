@@ -42,7 +42,7 @@
 
 <body>
     <div class="container main-login-page">
-        <div style="margin-top: 150px;" class="row justify-content-center">
+        <div style="margin-top: 110px;" class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div style="background-color: rgba(232, 231, 231, 1);" class="card custom-card">
                     <h2 class="card-header text-center">Login</h2>

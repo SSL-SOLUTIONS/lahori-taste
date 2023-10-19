@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     use RegistersUsers;
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/email/verify';
 
     public function __construct()
     {
@@ -26,7 +26,7 @@ class RegisterController extends Controller
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'phone' => ['required', 'string', 'max:255'], 
         'address' => ['required', 'string', 'max:255'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'], // This 'confirmed' rule ensures that the password matches 'password_confirmation'
+        'password' => ['required', 'string', 'min:8', 'confirmed'], 
     ]);   
 }
 

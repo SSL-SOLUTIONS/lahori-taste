@@ -10,16 +10,19 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, $id)
+    // public function index(string $id)
   
-    {}
+    // {
+    //     $user = User::findOrFail($id);
+    //     return view('website.profile.show', compact('user'));
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+       
     }
 
     /**

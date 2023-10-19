@@ -1,17 +1,20 @@
 @extends('layouts.website')
 @section('content')
 <br><br>
-<h1 style="text-align:center;">My Profile</h1>
+                <h1 style="text-align: center;">My Profile</h1>
 <style>
     .profile-container {
-        /* Remove background from the container */
+       
         background: none;
         color: white;
     }
 
     .profile-content {
-        background: rgba(17, 3, 5, 0.9) ;/* Adjust the rgba values and opacity as needed */
+        background: rgba(17, 3, 5, 0.9); /* Adjust the rgba values and opacity as needed */
         backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+        text-align: center; /* Center-align the profile content */
+        padding: 15px;
+        border-radius: 40px; /* Add some padding for space around content */
     }
 </style>
 <div class="container profile-container">
@@ -23,7 +26,7 @@
             {{ session()->get('success') }}
         </div>
     @endif
-    <div style="justify-content: space-around;" class="row">
+    <div class="row justify-content-center"> <!-- Center the row content -->
         <div class="col-lg-10 col-md-10 col-sm-3">
             <div class="card profile-content"> <!-- Add the profile-content class here -->
                 <div class="text-center mt-3">

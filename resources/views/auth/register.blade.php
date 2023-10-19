@@ -29,19 +29,21 @@
                     <div class="card-body">
                         <form action="{{ route('register') }}" method="post">
                             @csrf
-                            <div class="form-group">
-                                <label for="name"><b><i class="fas fa-user"></i>UserName:</b></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter your name" required>
-                                @error('name')
-                                <span class="error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><b><i class="fas fa-envelope"></i> Email:</b></label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter your email" required>
-                                @error('email')
-                                <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name"><b><i class="fas fa-user"></i>Name:</b></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter your name" required>
+                                    @error('name')
+                                    <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email"><b><i class="fas fa-envelope"></i> Email:</b></label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter your email" required>
+                                    @error('email')
+                                    <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="phone"><b><i class="fas fa-phone"></i> Phone:</b></label>
@@ -85,24 +87,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const passwordInput = document.getElementById('password');
-    const togglePassword = document.getElementById('togglePassword');
+        document.addEventListener("DOMContentLoaded", function() {
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
 
-    togglePassword.addEventListener('click', function () {
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            togglePassword.classList.remove('far-eye');
-            togglePassword.classList.add('far-eye-slash');
-        } else {
-            passwordInput.type = 'password';
-            togglePassword.classList.remove('far-eye-slash');
-            togglePassword.classList.add('far-eye');
-        }
-    });
-});
-</script>
-
+            togglePassword.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    togglePassword.classList.remove('far-eye');
+                    togglePassword.classList.add('far-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    togglePassword.classList.remove('far-eye-slash');
+                    togglePassword.classList.add('far-eye');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
