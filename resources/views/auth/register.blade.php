@@ -25,7 +25,13 @@
         <div class="row justify-content-center mt-2 mb-2">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div class="card custom-card">
-                    <h2 class="card-header text-center">Register</h2>
+                    <div>
+                        <h2 class="card-header d-flex justify-content-center align-items-center">
+                            <a href="{{route('main')}}">
+                                <img class="img-fluid" style="height: 40px; margin-right: 10px;" src="{{ asset('images/new logo lahori taste 2 (1).png') }}" alt="">
+                            </a>
+                        </h2>
+                    </div>
                     <div class="card-body">
                         <form action="{{ route('register') }}" method="post">
                             @csrf
@@ -73,6 +79,7 @@
                             <div class="form-group">
                                 <label for="confirm-password"><b><i class="fas fa-lock"></i> Confirm Password:</b></label>
                                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password" required>
+
                             </div>
 
                             <button type="submit" class="btn btn-warning btn-block"><b>Register</b></button>

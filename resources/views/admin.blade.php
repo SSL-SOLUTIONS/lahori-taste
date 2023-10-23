@@ -13,8 +13,10 @@
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.carousel.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
+
   <link rel="shortcut icon" href="" />
 </head>
+
 <body>
   <div class="container-scroller">
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -26,15 +28,16 @@
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('users')}}">
             <span class="menu-icon">
-              <i class="mdi mdi-playlist-play"></i>
+              <i class="mdi mdi-account"></i> <!-- User Icon -->
             </span>
             <span class="menu-title">Users</span>
           </a>
         </li>
+
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('categories')}}">
             <span class="menu-icon">
-              <i class="mdi mdi-playlist-play"></i>
+              <i class="mdi mdi-food-fork-drink"></i>
             </span>
             <span class="menu-title">Categories</span>
           </a>
@@ -42,7 +45,7 @@
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('products')}}">
             <span class="menu-icon">
-              <i class="mdi mdi-playlist-play"></i>
+              <i class="mdi mdi-hamburger"></i>
             </span>
             <span class="menu-title">Products</span>
           </a>
@@ -51,9 +54,9 @@
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('order')}}">
             <span class="menu-icon">
-              <i class="mdi mdi-playlist-play"></i>
+              <i class="mdi mdi-cart"></i>
             </span>
-            <span class="menu-title">Order</span>
+            <span class="menu-title">Orders</span>
           </a>
         </li>
       </ul>
@@ -120,7 +123,6 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-         @include('categories.edit')
 
           @yield('content')
         </div>

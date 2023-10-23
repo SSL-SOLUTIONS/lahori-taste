@@ -20,7 +20,7 @@ class WebsiteController extends Controller
 
     {
         $categoryId = $request->input('category');
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         if ($categoryId) {
             $products = Product::where('category_id', $categoryId)->get();
         } else {
@@ -34,7 +34,7 @@ class WebsiteController extends Controller
     {
 
         $categoryId = $request->input('category');
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         if ($categoryId) {
             $products = Product::where('category_id', $categoryId)->get();
         } else {

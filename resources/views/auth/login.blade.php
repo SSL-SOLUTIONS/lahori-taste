@@ -45,7 +45,13 @@
         <div style="margin-top: 110px;" class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div style="background-color: rgba(232, 231, 231, 1);" class="card custom-card">
-                    <h2 class="card-header text-center">Login</h2>
+                    <div>
+                        <h2 class="card-header d-flex justify-content-center align-items-center">
+                            <a href="{{route('main')}}">
+                                <img class="img-fluid" style="height: 40px; margin-right: 10px;" src="{{ asset('images/new logo lahori taste 2 (1).png') }}" alt="">
+                            </a>
+                        </h2>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -73,9 +79,11 @@
                             <button type="submit" class="btn btn-warning btn-block"><b>Login</b></button>
                         </form>
                         <p class="text-center mt-3">Don't have an account?
+                            <a href="{{ route('register') }}" class="text-decoration-none">Sign Up</a>
+                        </p>
+                        <p class="text-center">
                             <a href="{{ route('password.request') }}" class="text-decoration-none">Forgot Your Password?</a>
                         </p>
-                        <p class="text-center">Or, <a href="{{ route('register') }}" class="text-decoration-none">Sign Up</a></p>
                     </div>
                 </div>
             </div>

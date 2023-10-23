@@ -186,59 +186,91 @@
 </head>
 
 <body>
-
     <!-- Swiper -->
+    <br><br><br><br><br><br><br>
     <div class="container-fluid bg-dark">
         <div class="container-fluid bg-dark">
             <h1 class="pt-5" style="text-align:center; color:white">Our Best Sellers</h1>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                @php
-                $productIds = [5, 6,10, 12,20,31, 32, 57, 82,];
-                $products = \App\Models\Product::whereIn('id', $productIds)->get();
-                @endphp
+                    @php
+                    $productIds = [5,6,7,10,13,12,20,16,32,57, 82,];
+                    $products = \App\Models\Product::whereIn('id', $productIds)->get();
+                    @endphp
 
-                @foreach($products as $product)
-                <div class="swiper-slide" id="swiper-slid">
-                    <img src="{{ asset('/img/products/' . $product->image) }}" />
+                    @foreach($products as $product)
+                    <div class="swiper-slide" id="swiper-slid">
+                        <img src="{{ asset('/img/products/' . $product->image) }}" />
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
-               
-             
-
-               
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <a style="color: white" class="btn btn-warning" href="{{ route('menus') }}" id="view-menu-button">View Menu</a>
             </div>
         </div>
-        <div style="display: flex; justify-content: center;">
-    <a style="color: white" class="btn btn-warning" href="{{ route('menus') }}">View Menu</a>
-</div>
-    </div>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <br><br>
+        <div style="background-color:white;" id="product-list" class="row">
 
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-            },
-            autoplay: {
-                delay: 2000,
-                disableOnInteraction: true,
-            },
-            speed: 2000,
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+            @foreach ($products as $product)
+            <div class="col-lg-4 col-md-6 col-sm-12 p-0">
+                <div style="border:1px solid black;background-color:rgba(34, 40, 49, 1);color:white; " class="box m-3 p-0">
+                    <div class="img-box">
+                        <img height="30%" width="40%" class="img-fluid" src="{{ asset('/img/products/'.$product->image)}}" alt="{{ $product->name }}">
+                    </div>
+                    <div class="detail-box">
+                        <h3>{{$product->name}}</h3>
+
+                        <div class="options">
+                            <h6 class="text-start">
+                                <h4 class="ml-0">Price: {{config('app.currency')}}{{ $product->price }}</h3>
+                            </h6>
+                            <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
+                                <i class="fa fa-shopping-cart">
+                                    <span>Add To Cart</span>
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: true,
+                },
+                speed: 2000,
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#product-list').hide();
+                $('#view-menu-button').on('click', function(event) {
+                    event.preventDefault();
+                    $('#product-list').toggle(); 
+                });
+            });
+        </script>
 </body>
 
 </html>

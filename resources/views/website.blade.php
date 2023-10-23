@@ -21,7 +21,7 @@
   <!-- nice select  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
   <!-- font awesome style -->
-  <link href="{{asset('website/css/font-awesome.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('website/css/font-awesome.min.css')}}" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -199,50 +199,38 @@
       </nav>
     </div>
   </header>
-
   <div class="container-fluid p-0">
-    <div class="hero_area">
-      <div class="bg-box">
-        <img src="{{asset('images/image-1.jpg')}}" alt="">
-      </div>
-
+  <div class="hero_area">
+    
+    <div class="bg-box">
+    
+      <div id="heroCarousel" class="carousel slide" data-ride="carousel">
       
-      <!-- slider section -->
-      <section class="slider_section">
-        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            @foreach ($categories as $key => $category)
-            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-7 col-lg-6">
-                    <div class="detail-box">
-                      <h1 style="margin-top: 80px;">
-                        {{ $category->title }} <!-- Replace with the appropriate field from your database -->
-                      </h1>
-                      <p>
-                        {{ Str::limit($category->description, $limit = 70, $end = '...')}} <!-- Replace with the appropriate field from your database -->
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            @endforeach
+        <div class="carousel-inner">
+        
+          @foreach ($categories as $key => $category)
+          <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+          <div class="img-box">
+  <img class="img-fluid" src="{{ asset('img/categories/' . $category->image) }}" alt="">
+</div>
           </div>
-          <div class="container">
-            <ol class="carousel-indicators">
-              @foreach ($categories as $key => $category)
-              <li data-target="#customCarousel1" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
-              @endforeach
-            </ol>
-          </div>
+          @endforeach
         </div>
-      </section>
-
-      <!-- end slider section -->
+        <div class="container">
+          <ol class="carousel-indicators">
+            @foreach ($categories as $key => $category)
+            <li data-target="#heroCarousel" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
+            @endforeach
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
+
   <!--End header section  -->
 
   <!-- plz dont remove it -->
@@ -254,11 +242,15 @@
 
 
 
-  <div id="scroll-to-top">Top</div>
-  <br>
-  <!-- end food section -->
 
+
+
+  <!-- end food section -->
+  
   <!-- footer section -->
+
+
+
   <footer class="footer_section">
     <div class="container">
       <div class="row">

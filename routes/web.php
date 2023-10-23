@@ -41,7 +41,6 @@ Route::middleware(["auth", "isAdmin" ,"verified"])->group(function () {
     Route::get('/delivered/{id}', [OrderController::class, 'delivered']);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
-
 });
 // Cart related routes
 Route::middleware(['auth','verified'])->group(function () {

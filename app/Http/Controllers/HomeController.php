@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index(Request $request)
      {
         $categoryId = $request->input('category');
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         if ($categoryId) {
             $products = Product::where('category_id', $categoryId)->get();
         } else {
