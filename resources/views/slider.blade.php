@@ -16,6 +16,7 @@
             width: 90%;
             padding-top: 50px;
             padding-bottom: 50px;
+            
         }
 
         #swiper-slid {
@@ -100,7 +101,7 @@
             bottom: 50%;
             width: 80px;
             height: 80px;
-            background-image: url('images/images.png');
+            background-color: url('images/images.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -182,17 +183,31 @@
                 transform: translate(-50%, -50%)rotate(calc(--rotate) + 360deg);
             }
         }
+        @media screen and (max-width: 769px) {
+  .swiper-media{
+    margin-top: 320px;
+  }
+}
+@media screen and (max-width: 376px) {
+  .swiper-media{
+    margin-top: 100px;
+  }
+}
+
+
     </style>
 </head>
 
 <body>
     <!-- Swiper -->
-    <br><br><br><br><br><br><br>
-    <div class="container-fluid bg-dark">
-        <div class="container-fluid bg-dark">
-            <h1 class="pt-5" style="text-align:center; color:white">Our Best Sellers</h1>
-            <div class="swiper mySwiper">
+    
+    <div  class="container-fluid bg-dark">
+       
+            
+            <div class="swiper mySwiper swiper-media">
+            <h1  style="text-align:center; color:white; margin-top:100px;">Our Best Sellers</h1>
                 <div class="swiper-wrapper">
+               
                     @php
                     $productIds = [5,6,7,10,13,12,20,16,32,57, 82,];
                     $products = \App\Models\Product::whereIn('id', $productIds)->get();
@@ -208,19 +223,18 @@
             <div style="display: flex; justify-content: center;">
                 <a style="color: white" class="btn btn-warning" href="{{ route('menus') }}" id="view-menu-button">View Menu</a>
             </div>
-        </div>
+        
         <br><br>
         <div style="background-color:white;" id="product-list" class="row">
 
             @foreach ($products as $product)
             <div class="col-lg-4 col-md-6 col-sm-12 p-0">
-                <div style="border:1px solid black;background-color:rgba(34, 40, 49, 1);color:white; " class="box m-3 p-0">
+                <div style="border:1px solid black;background-color:rgba(34, 40, 49, 1);color:white;" class="box m-3 p-0">
                     <div class="img-box">
                         <img height="30%" width="40%" class="img-fluid" src="{{ asset('/img/products/'.$product->image)}}" alt="{{ $product->name }}">
                     </div>
                     <div class="detail-box">
                         <h3>{{$product->name}}</h3>
-
                         <div class="options">
                             <h6 class="text-start">
                                 <h4 class="ml-0">Price: {{config('app.currency')}}{{ $product->price }}</h3>
@@ -236,6 +250,9 @@
             </div>
             @endforeach
         </div>
+      
+
+
         <!-- Swiper JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
