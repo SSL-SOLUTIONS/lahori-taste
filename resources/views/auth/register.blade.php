@@ -37,7 +37,7 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="name"><b><i class="fas fa-user"></i>Name:</b></label>
+                                    <label for="name"><b><i class="fas fa-user"></i> Name:</b></label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter your name" required>
                                     @error('name')
                                     <span class="error">{{ $message }}</span>
