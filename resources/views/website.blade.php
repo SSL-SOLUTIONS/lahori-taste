@@ -232,12 +232,14 @@
 </div>
 
   <!--End header section  -->
-<div>  <!-- plz dont remove it -->
+
+<div>  
+  <!-- plz dont remove it -->
   <!-- @include('slider')
  <!-- plz dont remove it -->
  </div>
 
-<!-- or slider -->
+
 
 
 
