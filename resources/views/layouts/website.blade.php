@@ -199,7 +199,7 @@
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +01204-353936
+                  Call +4401204-353936
                 </span>
               </a>
               <a href="">
@@ -247,7 +247,7 @@
             Everyday
           </p>
           <p>
-            10.00 Am -10.00 Pm
+            11:00 Am -4:00 Pm
           </p>
         </div>
       </div>
