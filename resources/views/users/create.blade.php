@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -58,7 +58,7 @@
 
         <div class="form-group row">
             <div class="col-md-6 offset-md-2">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-success">Create</button>
             </div>
         </div>
     </form>

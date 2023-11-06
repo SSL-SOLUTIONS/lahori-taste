@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('layouts.admin')
 @section('content')
 <div class="container">
     @if (session('success'))
@@ -43,4 +43,5 @@
         </table>
     </div>
 </div>
+
 @endsection

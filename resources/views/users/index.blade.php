@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('layouts.admin')
 @section('content')
 <div class="container">
     @if (session('success'))
@@ -7,7 +7,7 @@
     </div>
     @endif
     <h2>User List</h2>
-    <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
+    <a href="{{ route('users.create') }}" class="btn btn-success">Create User</a>
     <div class="table-responsive">
         <table class="table table-bordered mt-3">
             <thead>

@@ -14,17 +14,17 @@
   <link rel="stylesheet" href="{{asset('admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
 
-  <link rel="shortcut icon" href="" />
+  <link rel="shortcut icon" href=""/>
 </head>
 
 <body>
   <div class="container-scroller">
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex fixed-top">
-        <img src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="" class="img-fluid rounded-circle mt-6">
+        <img  src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="" class="img-fluid  mt-6">
       </div>
       <br>
-      <ul class="nav">
+      <ul class="nav" style="position: fixed;">
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{url('users')}}">
             <span class="menu-icon">
@@ -72,9 +72,7 @@
           </button>
           <ul class="navbar-nav w-100">
             <li class="nav-item w-100">
-              <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                <input type="text" class="form-control" placeholder="Search products">
-              </form>
+           
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
@@ -94,11 +92,7 @@
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
+                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
@@ -124,8 +118,82 @@
       <div class="main-panel">
         <div class="content-wrapper">
 
-          @yield('content')
-        </div>
+   
+        <div class="container">
+          <div class="row d-flex">
+  <div class="card col-lg-4">
+    <div class="card-body">
+      <h5 class="card-title">All Users</h5>
+      @php
+    $numberOfUsers =  App\Models\User::count();
+@endphp
+<h6 class="card-subtitle mb-2 text-muted">Number of Users: {{ $numberOfUsers }}</h6>
+      <p class="card-text">Click Below To Show All Users</p>
+      <a  href="{{url('users')}}" class="card-link">Click Me</a>
+    </div>
+  </div>
+
+  <div class="card col-lg-4 ">
+    <div class="card-body">
+      <h5 class="card-title">All Categories</h5>
+      @php
+    $numberOfCategories =  App\Models\Category::count();
+@endphp
+<h6 class="card-subtitle mb-2 text-muted">Number of Categories: {{ $numberOfCategories }}</h6>
+      <p class="card-text">Click Below To Show All Categories</p>
+      <a  href="{{url('categories')}}" class="card-link">Click Me</a>
+    </div>
+  </div>
+
+  <div class="card col-lg-4">
+    <div class="card-body">
+      <h5 class="card-title">All Products</h5>
+      @php
+    $numberOfProducts =  App\Models\Product::count();
+@endphp
+<h6 class="card-subtitle mb-2 text-muted">Number of Products: {{ $numberOfProducts }}</h6>
+      <p class="card-text">Click Below To Show All Products</p>
+      <a  href="{{url('products')}}" class="card-link">Click Me</a>
+     
+    </div>
+  </div>
+</div>
+<div class="row d-flex">
+  <div class="card col-lg-4">
+    <div class="card-body">
+      <h5 class="card-title">All Orders</h5>
+      @php
+    $numberOfOrders =  App\Models\Order::count();
+@endphp
+<h6 class="card-subtitle mb-2 text-muted">Number of Orders: {{ $numberOfOrders }}</h6>
+      <p class="card-text">Click Below To Show All Orders</p>
+      <a  href="{{url('order')}}" class="card-link">Click Me</a>
+    </div>
+  </div>
+
+  <!-- <div class="card col-lg-4 ">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text"></p>
+      <a href="#" class="card-link">Click Me</a>
+     
+    </div>
+  </div>
+
+  <div class="card col-lg-4">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text"></p>
+      <a href="#" class="card-link">Click Me</a>
+     
+    </div>
+  </div> -->
+</div>
+</div>
+
+
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
 

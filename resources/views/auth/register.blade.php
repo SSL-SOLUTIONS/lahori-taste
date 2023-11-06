@@ -79,6 +79,7 @@
                             <div class="form-group">
                                 <label for="confirm-password"><b><i class="fas fa-lock"></i> Confirm Password:</b></label>
                                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password" required>
+                                
 
                             </div>
 

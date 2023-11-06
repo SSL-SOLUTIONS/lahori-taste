@@ -205,7 +205,7 @@
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                 info@lahoritaste.uk
                 </span>
               </a>
             </div>
@@ -247,7 +247,7 @@
             Everyday
           </p>
           <p>
-            11:00 Am -4:00 Pm
+            11:00 Am-4:00 Pm
           </p>
         </div>
       </div>

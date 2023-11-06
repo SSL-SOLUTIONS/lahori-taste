@@ -4,7 +4,8 @@
                 <h1 style="text-align: center;">My Profile</h1>
 <style>
     .profile-container {
-       
+
+     
         background: none;
         color: white;
     }

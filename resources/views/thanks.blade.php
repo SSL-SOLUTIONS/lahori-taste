@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         body {
             background-color:rgba(22, 6, 7, 1);
@@ -51,6 +52,12 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
+        #timer {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin: 50px;
+    }
     </style>
 </head>
 <body>
@@ -63,6 +70,58 @@
         </div>
         <!-- <p>We will send you a confirmation email shortly.</p> -->
         <a href="{{route('menus')}}">Continue Shopping</a>
+      "Your order will reach you within 20 minutes"
+        <div id="timer">20:00:000</div>
     </div>
+    <script>
+    $(document).ready(function () {
+        var initialCountdown = localStorage.getItem('countdown');
+        if (initialCountdown === null) {
+            // Set the initial countdown time (20 minutes) if it's not already stored
+            initialCountdown = 20 * 60 * 1000; // 20 minutes in milliseconds
+            localStorage.setItem('countdown', initialCountdown);
+        } else {
+            initialCountdown = parseInt(initialCountdown);
+        }
+
+        var minutes = Math.floor(initialCountdown / 60000);
+        var seconds = Math.floor((initialCountdown % 60000) / 1000);
+        var milliseconds = initialCountdown % 1000;
+
+        function updateTimer() {
+            var formattedTime =
+                (minutes < 10 ? '0' : '') + minutes + ':' +
+                (seconds < 10 ? '0' : '') + seconds + ':' +
+                (milliseconds < 10 ? '00' : (milliseconds < 100 ? '0' : '')) + milliseconds;
+            $('#timer').text(formattedTime);
+        }
+
+        function countdown() {
+            if (initialCountdown === 0) {
+                clearInterval(timerInterval);
+                alert('Countdown complete!');
+            } else {
+                initialCountdown -= 10; // Subtract 10 milliseconds
+                minutes = Math.floor(initialCountdown / 60000);
+                seconds = Math.floor((initialCountdown % 60000) / 1000);
+                milliseconds = initialCountdown % 1000;
+                localStorage.setItem('countdown', initialCountdown);
+                updateTimer();
+            }
+        }
+
+        updateTimer();
+        var timerInterval = setInterval(countdown, 10);
+    });
+</script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+

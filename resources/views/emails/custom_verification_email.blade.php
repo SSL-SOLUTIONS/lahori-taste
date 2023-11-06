@@ -1,11 +1,7 @@
 <!DOCTYPE html> 
 <html>
 <head>
-    <style>
-        body{
-           background-color:rgba(22, 6, 7, 1);
-        }
-    </style>
+  
   
     <title>Email Verification Notification</title>
 </head>
