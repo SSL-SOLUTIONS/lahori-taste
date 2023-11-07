@@ -28,6 +28,7 @@ use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 Route::get('/', [WebsiteController::class, 'website'])->name('website');
 Route::get('/main', [WebsiteController::class, 'main'])->name('main');
 Route::get('/menus/{category?}', [WebsiteController::class, 'menus'])->name('menus');
+Route::get('/productsdetails/{id}', [WebsiteController::class,'details'])->name('product.details');
 Route::get('/services', [WebsiteController::class, 'services'])->name('services');
 Route::get('/about', [WebsiteController::class, 'about'])->name('about');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
@@ -42,7 +43,6 @@ Route::middleware(["auth", "isAdmin" ,"verified"])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
 });
-// Cart related routes
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('/cart', [WebsiteController::class, 'cart'])->name('cart');
     Route::get('cart/add/{product}', [CartController::class, 'addtocart'])->name('cart.add');

@@ -59,6 +59,10 @@ class WebsiteController extends Controller
         return view('website.menu', compact('products', 'categories','cart'));
     }
 }
+public function details($id){
+    $product = Product::find($id);
+    return view('website.productdetails', ['product' => $product]);
+}
 
     
 

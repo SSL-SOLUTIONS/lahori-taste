@@ -74,8 +74,7 @@ class StripePaymentController extends Controller
         $cart = session()->get('cart',[]);
         $total = 0; 
         foreach ($cart as $item) {
-            $subtotal = $item['quantity'] * $item['price'];
-            $total += $subtotal;
+        $total += $item['price'];
         }
         return $total;
     }
@@ -83,3 +82,4 @@ class StripePaymentController extends Controller
         return view('thanks');
     }
 }
+

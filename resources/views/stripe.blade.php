@@ -8,13 +8,10 @@
 <style type="text/css">
     h2 {
         margin: 80px auto;
-        
     }
-
     body {
         background-color: rgba(22, 6, 7, 1);
     }
-
     .container {
         display: flex;
         justify-content: center;
@@ -34,14 +31,12 @@
             <h3 class="panel-title text-center"><strong>Payment Details</strong></h3>
         </div>
         <div class="panel-body">
-    
                     @if (Session::has('success'))
                         <div class="alert alert-success text-center">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                             <p>{{ Session::get('success') }}</p>
                         </div>
                     @endif
-    
                         <form 
                             role="form" 
                             action="{{ route('stripe.post') }}" 
@@ -85,7 +80,6 @@
                                 <div class='alert-danger alert'>Please correct the errors and try again.</div>
                             </div>
                         </div>
-    
                         <div class="row">
                             <div class="col-xs-12">
                                 <button class="btn btn-warning btn-lg btn-block" type="submit">Pay Now £{{$totalPrice}}</button>

@@ -9,7 +9,7 @@
         <div style="position: sticky; top: 30px;" class="vertical-navbar mt-5" style="height: 300px; overflow-y: auto;">
           <ul class="filters_menu" id="filters_menu">
             @php
-            $firstCategory = true;
+            $firstCategory =true;
             @endphp
             @foreach ($categories as $category)
             <li data-filter=".{{ $category->title }}" onclick="filterProducts('{{ $category->id }}')" @if ($firstCategory) class="active" @php $firstCategory=false; @endphp @endif>
@@ -37,16 +37,16 @@
             <div class="col-lg-4 col-sm-6 p-0 all category-{{ $product->category?->id}}">
               <div class="box m-3 p-0">
                 <div class="img-box">
+                  <a href="{{ route('product.details', $product->id) }}">
                   <img class="img-fluid" src="{{ asset('/img/products/'.$product->image)}}" alt="{{ $product->name }}">
+                 </a>
                 </div>
                 <div class="detail-box">
                   <b>{{$product->name}}</b>
-
-                  <p> {{ Str::limit($product->description, $limit = 20, $end = '...')}}</p>
                   <div class="options">
                     <h6 class="text-start">
 
-                      <h3 class="ml-0"> Price: {{config('app.currency')}}{{ $product->price }}</h3>
+                      <h5 class="ml-0"> Price: {{config('app.currency')}}{{ $product->price }}</h>
                     </h6>
                     <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
                       <i class="fa fa-plus"></i>

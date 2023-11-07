@@ -231,7 +231,9 @@
             <div class="col-lg-4 col-md-6 col-sm-12 p-0">
                 <div style="border:1px solid black;background-color:rgba(34, 40, 49, 1);color:white;" class="box m-3 p-0">
                     <div class="img-box">
+                    <a href="{{ route('product.details', $product->id) }}">
                         <img height="30%" width="40%" class="img-fluid" src="{{ asset('/img/products/'.$product->image)}}" alt="{{ $product->name }}">
+</a>
                     </div>
                     <div class="detail-box">
                         <h3>{{$product->name}}</h3>
@@ -240,9 +242,7 @@
                                 <h4 class="ml-0">Price: {{config('app.currency')}}{{ $product->price }}</h3>
                             </h6>
                             <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
-                                <i class="fa fa-shopping-cart">
-                                    <span>Add To Cart</span>
-                                </i>
+                                <button class= "btn btn-warning text-light mb-2"><b>Add to Cart</b></button>  
                             </a>
                         </div>
                     </div>
@@ -250,9 +250,6 @@
             </div>
             @endforeach
         </div>
-      
-
-
         <!-- Swiper JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
