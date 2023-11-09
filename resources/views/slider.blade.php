@@ -212,7 +212,6 @@
                     $productIds = [5,6,7,10,13,12,20,16,32,57, 82,];
                     $products = \App\Models\Product::whereIn('id', $productIds)->get();
                     @endphp
-
                     @foreach($products as $product)
                     <div class="swiper-slide" id="swiper-slid">
                         <img src="{{ asset('/img/products/' . $product->image) }}" />
@@ -221,35 +220,29 @@
                 </div>
             </div>
             <div style="display: flex; justify-content: center;">
-                <a style="color: white" class="btn btn-warning" href="{{ route('menus') }}" id="view-menu-button">View Menu</a>
+                <h4 style="color: white" class="btn btn-warning">All Our Major products</h4>
             </div>
         
         <br><br>
-        <div style="background-color:white;" id="product-list" class="row">
-
-            @foreach ($products as $product)
-            <div class="col-lg-4 col-md-6 col-sm-12 p-0">
-                <div style="border:1px solid black;background-color:rgba(34, 40, 49, 1);color:white;" class="box m-3 p-0">
-                    <div class="img-box">
-                    <a href="{{ route('product.details', $product->id) }}">
-                        <img height="30%" width="40%" class="img-fluid" src="{{ asset('/img/products/'.$product->image)}}" alt="{{ $product->name }}">
-</a>
-                    </div>
-                    <div class="detail-box">
-                        <h3>{{$product->name}}</h3>
-                        <div class="options">
-                            <h6 class="text-start">
-                                <h4 class="ml-0">Price: {{config('app.currency')}}{{ $product->price }}</h3>
-                            </h6>
-                            <a style="max-width: 20%;" href="{{route('cart.add' , $product)}}">
-                                <button class= "btn btn-warning text-light mb-2"><b>Add to Cart</b></button>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="category-card d-flex flex-wrap">
+            @php
+            use App\Models\Category;
+            use App\Models\Product;
+            $categories =Category::all();
+            $products =Product::all();
+            @endphp
+    @foreach($categories as $category)
+        <div class="col-lg-3 mb-3">
+            <div style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);" class="card">
+            <a href="{{ route('menus')}}">
+                    <img class="card-img-top" src="{{ asset('/img/categories/'.$category->image) }}" alt="{{ $category->name }}">
+                </a>
             </div>
-            @endforeach
         </div>
+    @endforeach
+</div>
+
+       
         <!-- Swiper JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 

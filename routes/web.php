@@ -27,7 +27,7 @@ use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 
 Route::get('/', [WebsiteController::class, 'website'])->name('website');
 Route::get('/main', [WebsiteController::class, 'main'])->name('main');
-Route::get('/menus/{category?}', [WebsiteController::class, 'menus'])->name('menus');
+Route::get('/menus/{categoryid?}', [WebsiteController::class, 'menus'])->name('menus');
 Route::get('/productsdetails/{id}', [WebsiteController::class,'details'])->name('product.details');
 Route::get('/services', [WebsiteController::class, 'services'])->name('services');
 Route::get('/about', [WebsiteController::class, 'about'])->name('about');

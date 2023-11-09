@@ -58,7 +58,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="{{route('website')}}">
             <span>
-              <img class="img-fluid" style="height: 40px;" src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="">
+              <img class="img-fluid mb-3" style="height: 40px;" src="{{asset('images/new logo lahori taste 2 (1).png')}}" alt="">
             </span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -199,7 +199,7 @@
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +4401204-353936
+                  Call +441204-353936
                 </span>
               </a>
               <a href="">
