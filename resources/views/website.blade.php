@@ -325,9 +325,8 @@
       </div>
       <div class="footer-info">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
+          &copy; <span id="displayYear"></span>All Rights Reserved By
           Lahori Taste
-
         </p>
       </div>
     </div>
@@ -369,8 +368,6 @@
       }
     });
   </script>
-
-
   <script>
     $(document).ready(function() {
       // Show the scroll-to-top circle when user scrolls down
