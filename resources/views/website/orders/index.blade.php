@@ -50,14 +50,14 @@
                     <td>{{$order->order_status}}</td>
                     <td>{{ $order->created_at->format('M d, Y H:i:s')}}</td>
                 </tr>
-                @endforeach
-            </tbody>
-        </table>
-        @if ($order->order_status == 'pending')
-            <div class="text-center"> <b>"Your order will reach you within 20 minutes"</b>
+        @if($order->order_status=='pending')
+            <div class="text-center"><b>"Your order will reach you within 20 minutes"</b>
                 <div id="timer"><b>20:00:000</b></div>
             </div>
         @endif
+        @endforeach
+        </tbody>
+        </table>
     </div>
 </div>
 <br>
